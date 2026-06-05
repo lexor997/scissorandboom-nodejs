@@ -82,7 +82,16 @@
         <div class="bg-black rounded-3 p-4 p-md-5">
           <h4 class="text-white fw-bold mb-1">We'll call you right back</h4>
           <p class="text-custom mb-4" style="font-size:.9rem;">Fill in your details below — we respond within the hour during business hours.</p>
-          <form action="https://formspree.io/f/mgejvdjp" method="POST">
+          <!-- Success state -->
+          <div id="contactSuccess" class="d-none text-center py-4">
+            <div style="width:56px;height:56px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+              <i class="bi bi-check-lg" style="font-size:1.6rem;color:var(--black);"></i>
+            </div>
+            <h4 class="text-white fw-bold mb-2">Message Sent!</h4>
+            <p class="text-custom mb-0">We'll be in touch within the hour during business hours.</p>
+          </div>
+
+          <form id="contactForm">
             <div class="row g-3">
               <div class="col-sm-6">
                 <input type="text" class="form-control" name="full_name" placeholder="Full Name *" required style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:.65rem 1rem;">
@@ -94,7 +103,7 @@
                 <input type="email" class="form-control" name="email" placeholder="Email Address" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:.65rem 1rem;">
               </div>
               <div class="col-12">
-                <select class="form-control" name="enquiry_type" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);border-radius:8px;padding:.65rem 1rem;">
+                <select class="form-select" name="enquiry_type" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);border-radius:8px;padding:.65rem 1rem;">
                   <option value="" disabled selected>Enquiry Type</option>
                   <option>Hire Enquiry</option>
                   <option>Pricing / Quote</option>
@@ -106,11 +115,53 @@
               <div class="col-12">
                 <textarea class="form-control" name="message" placeholder="Message — tell us about your project, site, and dates" rows="4" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:.65rem 1rem;width:100%;resize:vertical;"></textarea>
               </div>
+              <div id="contactError" class="col-12 d-none">
+                <div class="alert alert-danger mb-0" style="font-size:.85rem;">Something went wrong. Please call <strong>0800 250 081</strong> or email <a href="mailto:hire@scissorandboom.co.nz">hire@scissorandboom.co.nz</a> directly.</div>
+              </div>
               <div class="col-12">
-                <button type="submit" class="btn-primary-custom w-100">Send Message</button>
+                <button type="submit" id="contactSubmit" class="btn-primary-custom w-100">
+                  <span id="contactBtnText">Send Message</span>
+                  <span id="contactSpinner" class="d-none">Sending...</span>
+                </button>
               </div>
             </div>
           </form>
+
+          <script>
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
+              e.preventDefault();
+              const btn = document.getElementById('contactSubmit');
+              const btnText = document.getElementById('contactBtnText');
+              const spinner = document.getElementById('contactSpinner');
+              const errorBox = document.getElementById('contactError');
+
+              btn.disabled = true;
+              btnText.classList.add('d-none');
+              spinner.classList.remove('d-none');
+              errorBox.classList.add('d-none');
+
+              const data = Object.fromEntries(new FormData(this));
+
+              try {
+                const res = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data)
+                });
+                if (res.ok) {
+                  document.getElementById('contactForm').classList.add('d-none');
+                  document.getElementById('contactSuccess').classList.remove('d-none');
+                } else {
+                  throw new Error();
+                }
+              } catch {
+                errorBox.classList.remove('d-none');
+                btn.disabled = false;
+                btnText.classList.remove('d-none');
+                spinner.classList.add('d-none');
+              }
+            });
+          </script>
         </div>
       </div>
 
@@ -123,6 +174,7 @@
         <div class="contact-info-card mb-4">
           <div class="contact-info-item">
             <div class="contact-info-label">Phone</div>
+            <div><a href="tel:08002500181" class="text-white text-decoration-none">0800 250 081</a></div>
           </div>
           <div class="contact-info-item">
             <div class="contact-info-label">Email</div>

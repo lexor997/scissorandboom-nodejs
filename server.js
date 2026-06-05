@@ -12,6 +12,52 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// ── Contact form API ─────────────────────────────────────────
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { full_name, phone_number, email, enquiry_type, message } = req.body;
+
+    if (!full_name || !phone_number) {
+      return res.status(400).json({ error: 'Missing required fields.' });
+    }
+
+    await resend.emails.send({
+      from: 'Scissor and Boom <hello@clouston.net>',
+      to: 'hire@scissorandboom.co.nz',
+      replyTo: email || undefined,
+      subject: `${enquiry_type || 'Enquiry'} from ${full_name}`,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;color:#212529;">
+          <div style="background:#0a0a0a;padding:24px 32px;border-bottom:4px solid #e6cc17;">
+            <h2 style="color:#e6cc17;margin:0;font-size:20px;">New Contact Enquiry</h2>
+            <p style="color:#aaa;margin:6px 0 0;font-size:13px;">Submitted via scissorandboom.co.nz</p>
+          </div>
+          <div style="padding:28px 32px;">
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              <tr><td style="padding:6px 0;color:#666;width:160px;">Name</td><td style="padding:6px 0;font-weight:600;">${full_name}</td></tr>
+              <tr><td style="padding:6px 0;color:#666;">Phone</td><td style="padding:6px 0;font-weight:600;">${phone_number}</td></tr>
+              ${email ? `<tr><td style="padding:6px 0;color:#666;">Email</td><td style="padding:6px 0;"><a href="mailto:${email}" style="color:#c9b100;">${email}</a></td></tr>` : ''}
+              ${enquiry_type ? `<tr><td style="padding:6px 0;color:#666;">Enquiry Type</td><td style="padding:6px 0;">${enquiry_type}</td></tr>` : ''}
+            </table>
+            ${message ? `
+            <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin:24px 0 12px;">Message</h3>
+            <p style="font-size:14px;line-height:1.6;margin:0;">${message.replace(/\n/g, '<br>')}</p>
+            ` : ''}
+          </div>
+          <div style="background:#f8f9fa;padding:16px 32px;border-top:1px solid #eee;">
+            <p style="font-size:12px;color:#999;margin:0;">Sent from the Scissor and Boom contact form</p>
+          </div>
+        </div>
+      `,
+    });
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Contact email error:', err);
+    res.status(500).json({ error: 'Failed to send message.' });
+  }
+});
+
 // ── Booking form API ──────────────────────────────────────────
 app.post('/api/book', async (req, res) => {
   try {

@@ -90,13 +90,44 @@
         <div class="inquiry-card p-4">
           <h3 class="text-uppercase text-custom fw-bold mb-1" style="font-size:1.1rem;">Get a Free Quote</h3>
           <p class="text-white mb-3" style="font-size:.9rem;">We'll call you back within the hour.</p>
-          <form action="https://formspree.io/f/mgejvdjp" method="POST">
+          <div id="heroSuccess" class="d-none text-center py-3">
+            <i class="bi bi-check-circle-fill text-custom" style="font-size:2rem;"></i>
+            <p class="text-white mt-2 mb-0">Thanks! We'll call you back within the hour.</p>
+          </div>
+          <form id="heroForm">
             <input type="text" class="form-control mb-2" name="full_name" placeholder="Full Name" required>
             <input type="text" class="form-control mb-2" name="phone_number" placeholder="Phone Number" required>
             <input type="email" class="form-control mb-2" name="email" placeholder="Email Address">
             <textarea class="form-control mb-3" name="message" placeholder="What equipment do you need?" rows="3" style="background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:8px;padding:.65rem 1rem;width:100%;"></textarea>
-            <button type="submit" class="btn-primary-custom w-100">Send Enquiry</button>
+            <button type="submit" id="heroSubmit" class="btn-primary-custom w-100">
+              <span id="heroBtnText">Send Enquiry</span>
+              <span id="heroSpinner" class="d-none">Sending...</span>
+            </button>
           </form>
+          <script>
+            document.getElementById('heroForm').addEventListener('submit', async function(e) {
+              e.preventDefault();
+              const btn = document.getElementById('heroSubmit');
+              document.getElementById('heroBtnText').classList.add('d-none');
+              document.getElementById('heroSpinner').classList.remove('d-none');
+              btn.disabled = true;
+              try {
+                const res = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(Object.fromEntries(new FormData(this)))
+                });
+                if (res.ok) {
+                  this.classList.add('d-none');
+                  document.getElementById('heroSuccess').classList.remove('d-none');
+                } else { throw new Error(); }
+              } catch {
+                btn.disabled = false;
+                document.getElementById('heroBtnText').classList.remove('d-none');
+                document.getElementById('heroSpinner').classList.add('d-none');
+              }
+            });
+          </script>
         </div>
       </div>
     </div>
