@@ -39,7 +39,7 @@ img { max-width: 100%; height: auto; }
 /* ── Top Bar ─────────────────────────────────────────────── */
 .top-bar {
   background: var(--black);
-  padding: 10px 0;
+  padding: 6px 0;
   border-bottom: 3px solid var(--yellow);
 }
 
