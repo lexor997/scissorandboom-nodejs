@@ -18,30 +18,19 @@
 <section class="section-pad">
   <div class="container">
 
-    <!-- Filter tabs -->
-    <ul class="nav nav-pills mb-4 flex-wrap gap-2" id="pills-tab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-selected="true">All Equipment</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-electric-tab" data-bs-toggle="pill" data-bs-target="#pills-electric" type="button" role="tab" aria-selected="false">Electric Scissor Lifts</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-diesel-tab" data-bs-toggle="pill" data-bs-target="#pills-diesel" type="button" role="tab" aria-selected="false">Diesel Rough Terrain</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-boom-tab" data-bs-toggle="pill" data-bs-target="#pills-boom" type="button" role="tab" aria-selected="false">Diesel Boom Lifts</button>
-      </li>
-    </ul>
+    <!-- Filter buttons -->
+    <div class="d-flex flex-wrap gap-2 mb-4" id="equipFilter">
+      <button class="nav-link active" data-filter="all">All Equipment</button>
+      <button class="nav-link" data-filter="electric">Electric Scissor Lifts</button>
+      <button class="nav-link" data-filter="diesel">Diesel Rough Terrain</button>
+      <button class="nav-link" data-filter="boom">Diesel Boom Lifts</button>
+    </div>
 
-    <div class="tab-content" id="pills-tabContent">
-
-      <!-- ALL -->
-      <div class="tab-pane fade show active" id="pills-all" role="tabpanel">
-        <div class="row g-4">
+    <div id="equipGrid">
+      <div class="row g-4" id="equipRow">
 
           <!-- 0608E -->
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" data-cat="electric">
             <div class="card equipment-card h-100">
               <img src="/images/0608ME.png" alt="Sinoboom 0608E Electric Scissor Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
@@ -69,7 +58,7 @@
           </div>
 
           <!-- 0812E -->
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" data-cat="electric">
             <div class="card equipment-card h-100">
               <img src="/images/0812E.png" alt="Sinoboom 0812E Electric Scissor Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
@@ -92,46 +81,22 @@
             </div>
           </div>
 
-          <!-- 1012E -->
-          <div class="col-sm-6 col-lg-3">
+          <!-- 1414E+ -->
+          <div class="col-sm-6 col-lg-3" data-cat="electric">
             <div class="card equipment-card h-100">
-              <img src="/images/1012E.png" alt="Sinoboom 1012E Electric Scissor Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
+              <img src="/images/1212E.png" alt="Sinoboom 1414E+ Electric Scissor Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
                 <span class="badge mb-2" style="background:var(--yellow);color:var(--black);font-size:.72rem;">Electric Scissor</span>
-                <h5 class="fw-bold mb-0">Sinoboom 1012E</h5>
+                <h5 class="fw-bold mb-0">Sinoboom 1414E+</h5>
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                  <p class="text-muted mb-0" style="font-size:.85rem;">Working height: <strong>12m</strong></p>
-                  <span style="background:#0a0a0a;color:#e6cc17;font-size:.8rem;font-weight:700;padding:.3em .6em;border-radius:4px;">POA/day</span>
+                  <p class="text-muted mb-0" style="font-size:.85rem;">Working height: <strong>15.8m</strong></p>
+                  <span style="background:#0a0a0a;color:#e6cc17;font-size:.8rem;font-weight:700;padding:.3em .6em;border-radius:4px;">$190/day</span>
                 </div>
-                <div class="accordion accordion-flush" id="spec-1012E">
+                <div class="accordion accordion-flush" id="spec-1414E">
                   <div class="accordion-item border-0">
-                    <h2 class="accordion-header"><button class="bg-custom accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#spec-1012E-body" style="border-radius:6px;">Specifications</button></h2>
-                    <div id="spec-1012E-body" class="accordion-collapse collapse" data-bs-parent="#spec-1012E">
-                      <div class="accordion-body px-0 pt-2"><table class="w-100"><tr><td><small class="fw-bold">Platform Height</small></td><td><small>10m</small></td></tr><tr><td><small class="fw-bold">Working Height</small></td><td><small>12m</small></td></tr><tr><td><small class="fw-bold">Stowed Height</small></td><td><small>2.48m</small></td></tr><tr><td><small class="fw-bold">Stowed Height Folded</small></td><td><small>1.86m</small></td></tr><tr><td><small class="fw-bold">Stowed Width</small></td><td><small>1.17m</small></td></tr><tr><td><small class="fw-bold">Stowed Length</small></td><td><small>2.45m</small></td></tr><tr><td><small class="fw-bold">Platform Size</small></td><td><small>2.30×1.15×1.1m</small></td></tr><tr><td><small class="fw-bold">Platform Extension</small></td><td><small>0.9m</small></td></tr><tr><td><small class="fw-bold">Capacity</small></td><td><small>320kg</small></td></tr><tr><td><small class="fw-bold">Machine Weight</small></td><td><small>2,815kg</small></td></tr></table></div>
-                    </div>
-                  </div>
-                </div>
-                <a href="/book-online" class="btn-primary-custom d-block text-center mt-3" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- 1212E -->
-          <div class="col-sm-6 col-lg-3">
-            <div class="card equipment-card h-100">
-              <img src="/images/1212E.png" alt="Sinoboom 1212E Electric Scissor Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
-              <div class="card-body">
-                <span class="badge mb-2" style="background:var(--yellow);color:var(--black);font-size:.72rem;">Electric Scissor</span>
-                <h5 class="fw-bold mb-0">Sinoboom 1212E</h5>
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                  <p class="text-muted mb-0" style="font-size:.85rem;">Working height: <strong>13.9m</strong></p>
-                  <span style="background:#0a0a0a;color:#e6cc17;font-size:.8rem;font-weight:700;padding:.3em .6em;border-radius:4px;">POA/day</span>
-                </div>
-                <div class="accordion accordion-flush" id="spec-1212E">
-                  <div class="accordion-item border-0">
-                    <h2 class="accordion-header"><button class="bg-custom accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#spec-1212E-body" style="border-radius:6px;">Specifications</button></h2>
-                    <div id="spec-1212E-body" class="accordion-collapse collapse" data-bs-parent="#spec-1212E">
-                      <div class="accordion-body px-0 pt-2"><table class="w-100"><tr><td><small class="fw-bold">Platform Height</small></td><td><small>11.9m</small></td></tr><tr><td><small class="fw-bold">Working Height</small></td><td><small>13.9m</small></td></tr><tr><td><small class="fw-bold">Stowed Height</small></td><td><small>2.6m</small></td></tr><tr><td><small class="fw-bold">Stowed Height Folded</small></td><td><small>1.98m</small></td></tr><tr><td><small class="fw-bold">Stowed Width</small></td><td><small>1.17m</small></td></tr><tr><td><small class="fw-bold">Stowed Length</small></td><td><small>2.45m</small></td></tr><tr><td><small class="fw-bold">Platform Size</small></td><td><small>2.30×1.15×1.1m</small></td></tr><tr><td><small class="fw-bold">Platform Extension</small></td><td><small>0.9m</small></td></tr><tr><td><small class="fw-bold">Capacity</small></td><td><small>320kg</small></td></tr><tr><td><small class="fw-bold">Machine Weight</small></td><td><small>3,210kg</small></td></tr></table></div>
+                    <h2 class="accordion-header"><button class="bg-custom accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#spec-1414E-body" style="border-radius:6px;">Specifications</button></h2>
+                    <div id="spec-1414E-body" class="accordion-collapse collapse" data-bs-parent="#spec-1414E">
+                      <div class="accordion-body px-0 pt-2"><table class="w-100"><tr><td><small class="fw-bold">Platform Height</small></td><td><small>13.8m</small></td></tr><tr><td><small class="fw-bold">Working Height</small></td><td><small>15.8m</small></td></tr><tr><td><small class="fw-bold">Stowed Height</small></td><td><small>2.6m</small></td></tr><tr><td><small class="fw-bold">Stowed Height Folded</small></td><td><small>1.98m</small></td></tr><tr><td><small class="fw-bold">Stowed Width</small></td><td><small>1.41m</small></td></tr><tr><td><small class="fw-bold">Stowed Length</small></td><td><small>2.78m</small></td></tr><tr><td><small class="fw-bold">Platform Size</small></td><td><small>2.64×1.30×1.1m</small></td></tr><tr><td><small class="fw-bold">Platform Extension</small></td><td><small>0.9m</small></td></tr><tr><td><small class="fw-bold">Capacity</small></td><td><small>350kg</small></td></tr><tr><td><small class="fw-bold">Machine Weight</small></td><td><small>3,660kg</small></td></tr></table></div>
                     </div>
                   </div>
                 </div>
@@ -141,7 +106,7 @@
           </div>
 
           <!-- 1018RD -->
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" data-cat="diesel">
             <div class="card equipment-card h-100">
               <img src="/images/1018RD.jpg" alt="Sinoboom 1018RD Diesel Rough Terrain Scissor Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
@@ -165,7 +130,7 @@
           </div>
 
           <!-- 1218RD -->
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" data-cat="diesel">
             <div class="card equipment-card h-100">
               <img src="/images/1218RD.jpg" alt="Sinoboom 1218RD Diesel Rough Terrain Scissor Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
@@ -189,7 +154,7 @@
           </div>
 
           <!-- 1623RD -->
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" data-cat="diesel">
             <div class="card equipment-card h-100">
               <img src="/images/1618RD.jpg" alt="Sinoboom 1623RD Diesel Rough Terrain Scissor Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
@@ -213,7 +178,7 @@
           </div>
 
           <!-- AB15J -->
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" data-cat="boom">
             <div class="card equipment-card h-100">
               <img src="/images/AB15J.png" alt="Sinoboom AB15J Articulated Boom Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
@@ -237,7 +202,7 @@
           </div>
 
           <!-- AB18J -->
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" data-cat="boom">
             <div class="card equipment-card h-100">
               <img src="/images/AB18J.png" alt="Sinoboom AB18J Articulated Boom Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
@@ -261,7 +226,7 @@
           </div>
 
           <!-- AB25J -->
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" data-cat="boom">
             <div class="card equipment-card h-100">
               <img src="/images/AB25J.png" alt="Sinoboom AB25J Articulated Boom Lift" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;">
               <div class="card-body">
@@ -284,38 +249,26 @@
             </div>
           </div>
 
-        </div><!-- /row all -->
-      </div><!-- /tab all -->
+      </div><!-- /equipRow -->
+    </div><!-- /equipGrid -->
+    <style>
+      #equipFilter .nav-link { cursor:pointer; }
+    </style>
+    <script>
+      document.getElementById('equipFilter').addEventListener('click', function(e) {
+        const btn = e.target.closest('[data-filter]');
+        if (!btn) return;
+        // Update active button
+        this.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Show/hide cards
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('#equipRow > [data-cat]').forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.cat === filter) ? '' : 'none';
+        });
+      });
+    </script>
 
-      <!-- ELECTRIC ONLY (reuses same cards, filtered) -->
-      <div class="tab-pane fade" id="pills-electric" role="tabpanel">
-        <div class="row g-4">
-          <div class="col-sm-6 col-lg-3"><div class="card equipment-card h-100"><img src="/images/0608ME.png" alt="0608E" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:var(--yellow);color:var(--black);font-size:.72rem;">Electric Scissor</span><h5 class="fw-bold mb-0">Sinoboom 0608E</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>7.8m</strong> &nbsp;|&nbsp; Capacity: <strong>230kg</strong> &nbsp;|&nbsp; Width: <strong>0.81m</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-          <div class="col-sm-6 col-lg-3"><div class="card equipment-card h-100"><img src="/images/0812E.png" alt="0812E" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:var(--yellow);color:var(--black);font-size:.72rem;">Electric Scissor</span><h5 class="fw-bold mb-0">Sinoboom 0812E</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>10.1m</strong> &nbsp;|&nbsp; Capacity: <strong>450kg</strong> &nbsp;|&nbsp; Width: <strong>1.17m</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-          <div class="col-sm-6 col-lg-3"><div class="card equipment-card h-100"><img src="/images/1012E.png" alt="1012E" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:var(--yellow);color:var(--black);font-size:.72rem;">Electric Scissor</span><h5 class="fw-bold mb-0">Sinoboom 1012E</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>12m</strong> &nbsp;|&nbsp; Capacity: <strong>320kg</strong> &nbsp;|&nbsp; Width: <strong>1.17m</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-          <div class="col-sm-6 col-lg-3"><div class="card equipment-card h-100"><img src="/images/1212E.png" alt="1212E" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:var(--yellow);color:var(--black);font-size:.72rem;">Electric Scissor</span><h5 class="fw-bold mb-0">Sinoboom 1212E</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>13.9m</strong> &nbsp;|&nbsp; Capacity: <strong>320kg</strong> &nbsp;|&nbsp; Width: <strong>1.17m</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-        </div>
-      </div>
-
-      <!-- DIESEL ROUGH TERRAIN -->
-      <div class="tab-pane fade" id="pills-diesel" role="tabpanel">
-        <div class="row g-4">
-          <div class="col-sm-6 col-lg-4"><div class="card equipment-card h-100"><img src="/images/1018RD.jpg" alt="1018RD" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:#1a1a1a;color:#fff;font-size:.72rem;">Diesel Rough Terrain</span><h5 class="fw-bold mb-0">Sinoboom 1018RD</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>12m</strong> &nbsp;|&nbsp; Capacity: <strong>450kg</strong> &nbsp;|&nbsp; Width: <strong>1.78m</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-          <div class="col-sm-6 col-lg-4"><div class="card equipment-card h-100"><img src="/images/1218RD.jpg" alt="1218RD" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:#1a1a1a;color:#fff;font-size:.72rem;">Diesel Rough Terrain</span><h5 class="fw-bold mb-0">Sinoboom 1218RD</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>14.2m</strong> &nbsp;|&nbsp; Capacity: <strong>450kg</strong> &nbsp;|&nbsp; Width: <strong>1.78m</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-          <div class="col-sm-6 col-lg-4"><div class="card equipment-card h-100"><img src="/images/1618RD.jpg" alt="1623RD" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:#1a1a1a;color:#fff;font-size:.72rem;">Diesel Rough Terrain</span><h5 class="fw-bold mb-0">Sinoboom 1623RD</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>18.2m</strong> &nbsp;|&nbsp; Capacity: <strong>680kg</strong> &nbsp;|&nbsp; Width: <strong>2.28m</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-        </div>
-      </div>
-
-      <!-- BOOM LIFTS -->
-      <div class="tab-pane fade" id="pills-boom" role="tabpanel">
-        <div class="row g-4">
-          <div class="col-sm-6 col-lg-4"><div class="card equipment-card h-100"><img src="/images/AB15J.png" alt="AB15J" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:var(--yellow-dark);color:#fff;font-size:.72rem;">Boom Lift</span><h5 class="fw-bold mb-0">Sinoboom AB15J</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>16.7m</strong> &nbsp;|&nbsp; Max reach: <strong>8.5m</strong> &nbsp;|&nbsp; Capacity: <strong>250kg</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-          <div class="col-sm-6 col-lg-4"><div class="card equipment-card h-100"><img src="/images/AB18J.png" alt="AB18J" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:var(--yellow-dark);color:#fff;font-size:.72rem;">Boom Lift</span><h5 class="fw-bold mb-0">Sinoboom AB18J</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>20.3m</strong> &nbsp;|&nbsp; Max reach: <strong>12.2m</strong> &nbsp;|&nbsp; Capacity: <strong>250kg</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-          <div class="col-sm-6 col-lg-4"><div class="card equipment-card h-100"><img src="/images/AB25J.png" alt="AB25J" loading="lazy" style="height:200px;object-fit:contain;background:#f8f9fa;padding:16px;"><div class="card-body"><span class="badge mb-2" style="background:var(--yellow-dark);color:#fff;font-size:.72rem;">Boom Lift</span><h5 class="fw-bold mb-0">Sinoboom AB25J</h5><p class="text-muted" style="font-size:.85rem;">Working height: <strong>26.6m</strong> &nbsp;|&nbsp; Max reach: <strong>16.1m</strong> &nbsp;|&nbsp; Capacity: <strong>230kg</strong></p><a href="/book-online" class="btn-primary-custom d-block text-center" style="font-size:.82rem;padding:.55rem 1rem;">Hire This Machine</a></div></div></div>
-        </div>
-      </div>
-
-    </div><!-- /tab-content -->
 
     <!-- CTA -->
     <div class="text-center mt-5 pt-3">
