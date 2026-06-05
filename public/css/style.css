@@ -70,9 +70,9 @@ img { max-width: 100%; height: auto; }
 
 /* ── Hero ────────────────────────────────────────────────── */
 .hero {
-  background-image: linear-gradient(135deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.45) 100%),
-                    url('../images/hero.jpg');
-  background-position: center;
+  background-image: linear-gradient(135deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.35) 100%),
+                    url('../images/hero-boom.jpg');
+  background-position: center top;
   background-size: cover;
   background-attachment: fixed;
   min-height: 580px;
@@ -91,7 +91,7 @@ img { max-width: 100%; height: auto; }
 /* Page banner for inner pages */
 .page-banner {
   background-image: linear-gradient(135deg, rgba(0,0,0,.80) 0%, rgba(0,0,0,.55) 100%),
-                    url('../images/hero.jpg');
+                    url('../images/hero-boom.jpg');
   background-position: center;
   background-size: cover;
   padding: 80px 0 60px;
@@ -226,8 +226,8 @@ img { max-width: 100%; height: auto; }
 
 /* ── Features strip ──────────────────────────────────────── */
 .features {
-  background-image: linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.72)),
-                    url('../images/features.png');
+  background-image: linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.68)),
+                    url('../images/site-photo-2.jpg');
   background-position: center;
   background-size: cover;
   min-height: 260px;
@@ -335,6 +335,13 @@ img { max-width: 100%; height: auto; }
 .testimonial-card { background: #fff; border-radius: 12px; border: 1px solid var(--border); padding: 1.5rem; height: 100%; }
 .testimonial-stars { color: var(--yellow); margin-bottom: 10px; }
 .testimonial-avatar { width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--yellow); object-fit: cover; }
+.testimonial-initials {
+  width: 50px; height: 50px; border-radius: 50%;
+  background: var(--yellow); color: var(--black);
+  font-weight: 800; font-size: .95rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border: 3px solid var(--yellow);
+}
 
 /* ── Contact info card ───────────────────────────────────── */
 .contact-info-card { background: var(--black); border-radius: 16px; padding: 2.5rem 2rem; color: #fff; }
