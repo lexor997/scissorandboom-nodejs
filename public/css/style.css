@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+.bg-black {background-color: #000;}
+.bg-custom {background-color: #e6cc17;}
+.bg-custom-dark {
+    background-color: #c19d07;
+}
+.text-custom {color: #e6cc17;}
+.navbar-active {
+    background-color: #e6cc17;
+    color: #fff !important;
+}
+.hero {
+    background-image: url('../images/hero.jpg');
+    background-position: top;
+    background-size: cover;
+}
+.features {
+    background-image: url('../images/features.png');
+    background-position: top;
+    background-size: cover;
+    height: 300px;
+}
+.features-con {
+    margin-top: -100px;
+}
+.nav-pills .nav-link {
+    background-color: #cab008;
+    color: #fff;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #e6cc17;
+    color: #fff;
+}
