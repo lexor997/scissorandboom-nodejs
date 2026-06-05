@@ -1,0 +1,39 @@
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
+    <a href="/" class="d-flex align-items-center text-decoration-none py-1">
+      <img src="/images/logo-white.png" alt="Scissor and Boom Logo" style="width:240px;" loading="eager">
+    </a>
+    <div class="d-flex flex-wrap align-items-center gap-4 py-1">
+      <a href="tel:08002500181" class="text-decoration-none text-white d-flex align-items-center gap-2" style="font-size:.9rem;font-weight:600;">
+        <i class="bi bi-telephone-fill text-custom"></i> 0800 250 081
+      </a>
+      <a href="mailto:hire@scissorandboom.co.nz" class="text-decoration-none text-white d-flex align-items-center gap-2" style="font-size:.9rem;font-weight:600;">
+        <i class="bi bi-envelope-fill text-custom"></i> hire@scissorandboom.co.nz
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Sticky Nav -->
+<header class="main-nav">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light py-0">
+      <div class="container-fluid px-0">
+        <button class="navbar-toggler border-0 ms-auto my-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav text-uppercase">
+            <li class="nav-item me-1"><a class="nav-link px-3 py-3 <%= page === 'home' ? 'navbar-active' : '' %>" href="/">Home</a></li>
+            <li class="nav-item me-1"><a class="nav-link px-3 py-3 <%= page === 'equipment' ? 'navbar-active' : '' %>" href="/equipment">Equipment</a></li>
+            <li class="nav-item me-1"><a class="nav-link px-3 py-3 <%= page === 'pricing' ? 'navbar-active' : '' %>" href="/pricing">Pricing</a></li>
+            <li class="nav-item me-1"><a class="nav-link px-3 py-3 <%= page === 'about' ? 'navbar-active' : '' %>" href="/about-us">About Us</a></li>
+            <li class="nav-item me-1"><a class="nav-link px-3 py-3 <%= page === 'contact' ? 'navbar-active' : '' %>" href="/contact-us">Contact Us</a></li>
+            <li class="nav-item ms-lg-2"><a class="nav-link px-3 py-3 navbar-active" href="/book-online">Book Online</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

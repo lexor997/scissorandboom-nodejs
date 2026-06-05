@@ -1,0 +1,155 @@
+<%- include('partials/_head', {
+  title: "Contact Us | Scissor And Boom Height Access Auckland",
+  description: "Contact Scissor And Boom Height Access Ltd. Call 0800 250 081 or email hire@scissorandboom.co.nz. We respond within the hour.",
+  canonical: "/contact-us"
+}) %>
+<%- include('partials/_nav', { page: "contact" }) %>
+
+<!-- Page Banner -->
+<div class="page-banner text-white">
+  <div class="container">
+    <span class="section-label" style="color:#e6cc17;">We Reply Within the Hour</span>
+    <h1 class="fw-bold mt-1">Contact Us</h1>
+    <p class="mt-2 mb-0" style="opacity:.85;max-width:560px;">Questions about our fleet, need a quote, or ready to book? Fill in the form and we'll be back to you fast — or just call us directly.</p>
+  </div>
+</div>
+
+<!-- Contact Section -->
+<section class="section-pad">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+
+      <!-- Form -->
+      <div class="col-lg-7">
+        <span class="section-label">Send a Message</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-divider"></div>
+        <div class="bg-black rounded-3 p-4 p-md-5">
+          <h4 class="text-white fw-bold mb-1">We'll call you right back</h4>
+          <p class="text-custom mb-4" style="font-size:.9rem;">Fill in your details below — we respond within the hour during business hours.</p>
+          <!-- Success state -->
+          <div id="contactSuccess" class="d-none text-center py-4">
+            <div style="width:56px;height:56px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+              <i class="bi bi-check-lg" style="font-size:1.6rem;color:var(--black);"></i>
+            </div>
+            <h4 class="text-white fw-bold mb-2">Message Sent!</h4>
+            <p class="text-custom mb-0">We'll be in touch within the hour during business hours.</p>
+          </div>
+
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <input type="text" class="form-control" name="full_name" placeholder="Full Name *" required style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:.65rem 1rem;">
+              </div>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" name="phone_number" placeholder="Phone Number *" required style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:.65rem 1rem;">
+              </div>
+              <div class="col-12">
+                <input type="email" class="form-control" name="email" placeholder="Email Address" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:.65rem 1rem;">
+              </div>
+              <div class="col-12">
+                <select class="form-select" name="enquiry_type" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);border-radius:8px;padding:.65rem 1rem;">
+                  <option value="" disabled selected>Enquiry Type</option>
+                  <option>Hire Enquiry</option>
+                  <option>Pricing / Quote</option>
+                  <option>Machine Availability</option>
+                  <option>General Question</option>
+                  <option>Account Application</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <textarea class="form-control" name="message" placeholder="Message — tell us about your project, site, and dates" rows="4" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:.65rem 1rem;width:100%;resize:vertical;"></textarea>
+              </div>
+              <div id="contactError" class="col-12 d-none">
+                <div class="alert alert-danger mb-0" style="font-size:.85rem;">Something went wrong. Please call <strong>0800 250 081</strong> or email <a href="mailto:hire@scissorandboom.co.nz">hire@scissorandboom.co.nz</a> directly.</div>
+              </div>
+              <div class="col-12">
+                <button type="submit" id="contactSubmit" class="btn-primary-custom w-100">
+                  <span id="contactBtnText">Send Message</span>
+                  <span id="contactSpinner" class="d-none">Sending...</span>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <script>
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
+              e.preventDefault();
+              const btn = document.getElementById('contactSubmit');
+              const btnText = document.getElementById('contactBtnText');
+              const spinner = document.getElementById('contactSpinner');
+              const errorBox = document.getElementById('contactError');
+
+              btn.disabled = true;
+              btnText.classList.add('d-none');
+              spinner.classList.remove('d-none');
+              errorBox.classList.add('d-none');
+
+              const data = Object.fromEntries(new FormData(this));
+
+              try {
+                const res = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data)
+                });
+                if (res.ok) {
+                  document.getElementById('contactForm').classList.add('d-none');
+                  document.getElementById('contactSuccess').classList.remove('d-none');
+                } else {
+                  throw new Error();
+                }
+              } catch {
+                errorBox.classList.remove('d-none');
+                btn.disabled = false;
+                btnText.classList.remove('d-none');
+                spinner.classList.add('d-none');
+              }
+            });
+          </script>
+        </div>
+      </div>
+
+      <!-- Info + Map -->
+      <div class="col-lg-5">
+        <span class="section-label">Our Details</span>
+        <h2 class="section-title">Find Us</h2>
+        <div class="section-divider"></div>
+
+        <div class="contact-info-card mb-4">
+          <div class="contact-info-item">
+            <div class="contact-info-label">Phone</div>
+            <div><a href="tel:08002500181" class="text-white text-decoration-none">0800 250 081</a></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Email</div>
+            <div>hire@scissorandboom.co.nz</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Address</div>
+            <div>P.O. Box 204136, Highbrook, Auckland 2161</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Hours</div>
+            <div>Monday – Friday: 8:00am – 5:00pm<br><span style="opacity:.6;font-size:.85rem;">After-hours emergency support available</span></div>
+          </div>
+        </div>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3189.3098951814873!2d174.88756007531867!3d-36.93076128409069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d4c7879751f93%3A0x71d4a1d9a314aa54!2s68%20Cryers%20Road%2C%20East%20T%C4%81maki%2C%20Auckland%202013%2C%20New%20Zealand!5e0!3m2!1sen!2snz!4v1690094527712!5m2!1sen!2snz"
+          class="w-100 rounded-3"
+          height="280"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Scissor and Boom location map">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+
+<%- include('partials/_footer') %>
