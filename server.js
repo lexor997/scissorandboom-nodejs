@@ -1,12 +1,83 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+require('dotenv').config();
+const { Resend } = require('resend');
 
+const resend = new Resend(process.env.RESEND_API_KEY);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// ── Booking form API ──────────────────────────────────────────
+app.post('/api/book', async (req, res) => {
+  try {
+    const {
+      name, email, phone, company,
+      equipment, quantity, startDate, endDate,
+      deliveryAddress, accessNotes, extraInfo
+    } = req.body;
+
+    // Basic validation
+    if (!name || !phone || !equipment || !startDate || !deliveryAddress) {
+      return res.status(400).json({ error: 'Missing required fields.' });
+    }
+
+    await resend.emails.send({
+      from: 'Scissor and Boom <hello@clouston.net>',
+      to: 'hire@scissorandboom.co.nz',
+      replyTo: email || undefined,
+      subject: `New Booking Request — ${equipment} — ${name}`,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;color:#212529;">
+          <div style="background:#0a0a0a;padding:24px 32px;border-bottom:4px solid #e6cc17;">
+            <h2 style="color:#e6cc17;margin:0;font-size:20px;">New Booking Request</h2>
+            <p style="color:#aaa;margin:6px 0 0;font-size:13px;">Submitted via scissorandboom.co.nz</p>
+          </div>
+          <div style="padding:28px 32px;">
+            <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:16px;">Customer Details</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              <tr><td style="padding:6px 0;color:#666;width:160px;">Name</td><td style="padding:6px 0;font-weight:600;">${name}</td></tr>
+              <tr><td style="padding:6px 0;color:#666;">Phone</td><td style="padding:6px 0;font-weight:600;">${phone}</td></tr>
+              ${email ? `<tr><td style="padding:6px 0;color:#666;">Email</td><td style="padding:6px 0;"><a href="mailto:${email}" style="color:#c9b100;">${email}</a></td></tr>` : ''}
+              ${company ? `<tr><td style="padding:6px 0;color:#666;">Company</td><td style="padding:6px 0;">${company}</td></tr>` : ''}
+            </table>
+
+            <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:16px;margin-top:28px;">Equipment &amp; Dates</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              <tr><td style="padding:6px 0;color:#666;width:160px;">Equipment</td><td style="padding:6px 0;font-weight:600;">${equipment}</td></tr>
+              ${quantity ? `<tr><td style="padding:6px 0;color:#666;">Quantity</td><td style="padding:6px 0;">${quantity}</td></tr>` : ''}
+              <tr><td style="padding:6px 0;color:#666;">Start Date</td><td style="padding:6px 0;font-weight:600;">${startDate}</td></tr>
+              ${endDate ? `<tr><td style="padding:6px 0;color:#666;">End Date</td><td style="padding:6px 0;font-weight:600;">${endDate}</td></tr>` : ''}
+            </table>
+
+            <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:16px;margin-top:28px;">Delivery Details</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              <tr><td style="padding:6px 0;color:#666;width:160px;">Delivery Address</td><td style="padding:6px 0;font-weight:600;">${deliveryAddress}</td></tr>
+              ${accessNotes ? `<tr><td style="padding:6px 0;color:#666;">Site Access Notes</td><td style="padding:6px 0;">${accessNotes}</td></tr>` : ''}
+            </table>
+
+            ${extraInfo ? `
+            <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:16px;margin-top:28px;">Additional Info</h3>
+            <p style="font-size:14px;line-height:1.6;margin:0;">${extraInfo.replace(/\n/g, '<br>')}</p>
+            ` : ''}
+          </div>
+          <div style="background:#f8f9fa;padding:16px 32px;border-top:1px solid #eee;">
+            <p style="font-size:12px;color:#999;margin:0;">Sent from the Scissor and Boom online booking form</p>
+          </div>
+        </div>
+      `,
+    });
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Booking email error:', err);
+    res.status(500).json({ error: 'Failed to send booking request.' });
+  }
+});
 
 const viewsDir = path.join(__dirname, 'views');
 

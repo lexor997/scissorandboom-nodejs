@@ -108,22 +108,169 @@
           <h2 class="section-title">Complete Your Booking Request</h2>
           <div class="section-divider mx-auto"></div>
         </div>
-        <div id="wufoo-qg7qnuq0phb5em">
-          Fill out our <a href="https://scissorandboom.wufoo.com/forms/qg7qnuq0phb5em" class="text-custom fw-bold">online booking form</a>.
+        <!-- Success message (hidden by default) -->
+        <div id="bookingSuccess" class="d-none text-center py-5">
+          <div style="width:64px;height:64px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+            <i class="bi bi-check-lg" style="font-size:1.8rem;color:var(--black);"></i>
+          </div>
+          <h3 class="fw-bold mb-2">Booking Request Sent!</h3>
+          <p class="text-muted mb-4">Thanks, we've received your request and will be in touch within the hour to confirm availability.</p>
+          <p class="text-muted" style="font-size:.9rem;">Need it sooner? Call us on <a href="tel:08002500181" class="text-custom fw-bold">0800 250 081</a></p>
         </div>
-        <script type="text/javascript">
-          var qg7qnuq0phb5em;
-          (function(d,t){
-            var s=d.createElement(t),
-            options={'userName':'scissorandboom','formHash':'qg7qnuq0phb5em','autoResize':true,'height':'1433','async':true,'host':'wufoo.com','header':'show','ssl':true};
-            s.src=('https:'==d.location.protocol?'https://':'http://')+'secure.wufoo.com/scripts/embed/form.js';
-            s.onload=s.onreadystatechange=function(){var rs=this.readyState;if(rs)if(rs!='complete')if(rs!='loaded')return;try{qg7qnuq0phb5em=new WufooForm();qg7qnuq0phb5em.initialize(options);qg7qnuq0phb5em.display();}catch(e){}};
-            var scr=d.getElementsByTagName(t)[0],par=scr.parentNode;par.insertBefore(s,scr);
-          })(document,'script');
+
+        <!-- Booking form -->
+        <form id="bookingForm">
+          <!-- Customer Details -->
+          <h5 class="fw-bold mb-3" style="font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--yellow-dark);">
+            <i class="bi bi-person me-2"></i>Your Details
+          </h5>
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6">
+              <label class="form-label fw-600" style="font-size:.85rem;font-weight:600;">Full Name <span class="text-danger">*</span></label>
+              <input type="text" name="name" class="form-control" placeholder="John Smith" required>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">Phone Number <span class="text-danger">*</span></label>
+              <input type="tel" name="phone" class="form-control" placeholder="021 123 4567" required>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">Email Address</label>
+              <input type="email" name="email" class="form-control" placeholder="john@company.co.nz">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">Company Name</label>
+              <input type="text" name="company" class="form-control" placeholder="Acme Ltd">
+            </div>
+          </div>
+
+          <!-- Equipment -->
+          <h5 class="fw-bold mb-3" style="font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--yellow-dark);">
+            <i class="bi bi-tools me-2"></i>Equipment Required
+          </h5>
+          <div class="row g-3 mb-4">
+            <div class="col-sm-8">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">Equipment Type <span class="text-danger">*</span></label>
+              <select name="equipment" class="form-select" required>
+                <option value="" disabled selected>Select equipment...</option>
+                <optgroup label="Electric Scissor Lifts">
+                  <option>Sinoboom 0608ME — 8m Working Height (Electric)</option>
+                  <option>Sinoboom 0812E — 10m Working Height (Electric)</option>
+                  <option>Sinoboom 1012E — 11.8m Working Height (Electric)</option>
+                  <option>Sinoboom 1212E — 13.9m Working Height (Electric)</option>
+                </optgroup>
+                <optgroup label="Rough Terrain Scissor Lifts">
+                  <option>Sinoboom 1018RD — 11.8m Working Height (4WD Diesel)</option>
+                  <option>Sinoboom 1218RD — 13.9m Working Height (4WD Diesel)</option>
+                  <option>Sinoboom 1623RD — 18.2m Working Height (4WD Diesel)</option>
+                </optgroup>
+                <optgroup label="Diesel Boom Lifts">
+                  <option>Sinoboom AB15J — 21m Working Height (Diesel)</option>
+                  <option>Sinoboom AB18J — 23.5m Working Height (Diesel)</option>
+                  <option>Sinoboom AB25J — 31m Working Height (Diesel)</option>
+                </optgroup>
+                <option value="Not sure — please advise">Not sure — please advise</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">Quantity</label>
+              <select name="quantity" class="form-select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4+</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dates -->
+          <h5 class="fw-bold mb-3" style="font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--yellow-dark);">
+            <i class="bi bi-calendar3 me-2"></i>Hire Dates
+          </h5>
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">Start Date <span class="text-danger">*</span></label>
+              <input type="date" name="startDate" class="form-control" required>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">End Date</label>
+              <input type="date" name="endDate" class="form-control">
+            </div>
+          </div>
+
+          <!-- Delivery -->
+          <h5 class="fw-bold mb-3" style="font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--yellow-dark);">
+            <i class="bi bi-truck me-2"></i>Delivery Details
+          </h5>
+          <div class="row g-3 mb-4">
+            <div class="col-12">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">Site / Delivery Address <span class="text-danger">*</span></label>
+              <input type="text" name="deliveryAddress" class="form-control" placeholder="123 Example Street, Highbrook, Auckland" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label" style="font-size:.85rem;font-weight:600;">Site Access Notes</label>
+              <input type="text" name="accessNotes" class="form-control" placeholder="e.g. Gate code, contact on site, height restrictions...">
+            </div>
+          </div>
+
+          <!-- Extra info -->
+          <div class="mb-4">
+            <label class="form-label" style="font-size:.85rem;font-weight:600;">Anything else we should know?</label>
+            <textarea name="extraInfo" class="form-control" rows="3" placeholder="Surface type, indoor/outdoor, any special requirements..."></textarea>
+          </div>
+
+          <!-- Error message -->
+          <div id="bookingError" class="alert alert-danger d-none" style="font-size:.88rem;">
+            Something went wrong sending your request. Please call us on <strong>0800 250 081</strong> or email <a href="mailto:hire@scissorandboom.co.nz">hire@scissorandboom.co.nz</a> directly.
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" id="bookingSubmit" class="btn-primary-custom w-100" style="font-size:1rem;padding:1rem;">
+            <span id="bookingBtnText">Submit Booking Request</span>
+            <span id="bookingSpinner" class="d-none">Sending...</span>
+          </button>
+
+          <div class="mt-3 p-3 rounded-3" style="background:var(--light);border:1px solid var(--border);">
+            <p class="mb-0" style="font-size:.82rem;color:var(--muted);">By submitting this form you agree to our <a href="/terms-and-conditions" class="text-custom fw-bold">Terms and Conditions of Hire</a>. A formal Hire Agreement will be sent to you for signature before delivery is confirmed.</p>
+          </div>
+        </form>
+
+        <script>
+          document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('bookingSubmit');
+            const btnText = document.getElementById('bookingBtnText');
+            const spinner = document.getElementById('bookingSpinner');
+            const errorBox = document.getElementById('bookingError');
+
+            btn.disabled = true;
+            btnText.classList.add('d-none');
+            spinner.classList.remove('d-none');
+            errorBox.classList.add('d-none');
+
+            const data = Object.fromEntries(new FormData(this));
+
+            try {
+              const res = await fetch('/api/book', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+              });
+
+              if (res.ok) {
+                document.getElementById('bookingForm').classList.add('d-none');
+                document.getElementById('bookingSuccess').classList.remove('d-none');
+                window.scrollTo({ top: document.getElementById('bookingSuccess').offsetTop - 80, behavior: 'smooth' });
+              } else {
+                throw new Error('Server error');
+              }
+            } catch (err) {
+              errorBox.classList.remove('d-none');
+              btn.disabled = false;
+              btnText.classList.remove('d-none');
+              spinner.classList.add('d-none');
+            }
+          });
         </script>
-        <div class="mt-4 p-3 rounded-3" style="background:var(--light);border:1px solid var(--border);">
-          <p class="mb-0" style="font-size:.85rem;color:var(--muted);">By submitting this form you agree to our <a href="/terms-and-conditions" class="text-custom fw-bold" target="_blank" rel="noreferrer noopener">Terms and Conditions of Hire</a>. A formal Hire Agreement will be sent to you for signature before delivery is confirmed.</p>
-        </div>
       </div>
     </div>
   </div>
