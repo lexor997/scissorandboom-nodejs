@@ -19,6 +19,7 @@ app.get('/equipment', (req, res) => sendView(res, 'equipment.html'));
 app.get('/about-us', (req, res) => sendView(res, 'about-us.html'));
 app.get('/contact-us', (req, res) => sendView(res, 'contact-us.html'));
 app.get('/book-online', (req, res) => sendView(res, 'book-online.html'));
+app.get('/pricing', (req, res) => sendView(res, 'pricing.html'));
 app.get('/terms-and-conditions', (req, res) => sendView(res, 'terms-and-conditions.html'));
 app.get('/account-application', (req, res) => sendView(res, 'account-application.html'));
 
