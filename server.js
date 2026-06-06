@@ -127,6 +127,31 @@ app.post('/api/book', async (req, res) => {
   }
 });
 
+// ── Sitemap ───────────────────────────────────────────────────
+app.get('/sitemap.xml', (req, res) => {
+  const pages = [
+    { loc: '/',                     priority: '1.0', changefreq: 'weekly'  },
+    { loc: '/equipment',            priority: '0.9', changefreq: 'monthly' },
+    { loc: '/pricing',              priority: '0.8', changefreq: 'monthly' },
+    { loc: '/book-online',          priority: '0.8', changefreq: 'monthly' },
+    { loc: '/contact-us',           priority: '0.7', changefreq: 'yearly'  },
+    { loc: '/about-us',             priority: '0.6', changefreq: 'yearly'  },
+    { loc: '/terms-and-conditions', priority: '0.2', changefreq: 'yearly'  },
+  ];
+  const today = new Date().toISOString().split('T')[0];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map(p => `  <url>
+    <loc>https://scissorandboom.co.nz${p.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+  res.set('Content-Type', 'application/xml');
+  res.send(xml);
+});
+
 app.get('/', (req, res) => res.render('index'));
 app.get('/equipment', (req, res) => res.render('equipment'));
 app.get('/about-us', (req, res) => res.render('about-us'));
