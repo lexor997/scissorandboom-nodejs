@@ -1,0 +1,382 @@
+<%- include('partials/_head', {
+  title: "Account Application | Scissor And Boom Height Access Auckland",
+  description: "Apply for a credit account with Scissor And Boom Height Access Ltd. Fast approval for trade customers in Auckland and NZ.",
+  canonical: "/account-application"
+}) %>
+<%- include('partials/_nav', { page: "account" }) %>
+
+<!-- Page Banner -->
+<div class="page-banner text-white">
+  <div class="container">
+    <span class="section-label" style="color:#e6cc17;">Trade Customers</span>
+    <h1 class="fw-bold mt-1">Account Application</h1>
+    <p class="mt-2 mb-0" style="opacity:.85;max-width:580px;">Apply for a 30-day credit account. Trade customers enjoy priority booking, consolidated invoicing, and dedicated account support.</p>
+  </div>
+</div>
+
+<!-- Form -->
+<section class="section-pad">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+
+        <!-- Info strip -->
+        <div class="row g-3 mb-5">
+          <div class="col-md-4">
+            <div class="d-flex gap-3 align-items-start">
+              <i class="bi bi-clock-history text-custom" style="font-size:1.5rem;flex-shrink:0;margin-top:2px;"></i>
+              <div><strong class="d-block">Fast Approval</strong><span class="text-muted" style="font-size:.88rem;">Most accounts approved within 2 business days</span></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex gap-3 align-items-start">
+              <i class="bi bi-receipt text-custom" style="font-size:1.5rem;flex-shrink:0;margin-top:2px;"></i>
+              <div><strong class="d-block">30-Day Terms</strong><span class="text-muted" style="font-size:.88rem;">Monthly consolidated invoicing available</span></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex gap-3 align-items-start">
+              <i class="bi bi-headset text-custom" style="font-size:1.5rem;flex-shrink:0;margin-top:2px;"></i>
+              <div><strong class="d-block">Dedicated Support</strong><span class="text-muted" style="font-size:.88rem;">Priority service and account manager</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success message (hidden by default) -->
+        <div id="successMsg" class="alert alert-success d-none mb-4" role="alert">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <strong>Application submitted!</strong> We'll review your application and be in touch within 2 business days.
+        </div>
+        <div id="errorMsg" class="alert alert-danger d-none mb-4" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          Something went wrong. Please try again or call us on <strong>0800 250 081</strong>.
+        </div>
+
+        <form id="accountForm" novalidate>
+
+          <!-- Section 1: Company Details -->
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h5 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-circle text-white" style="width:28px;height:28px;background:var(--black);font-size:.8rem;flex-shrink:0;">1</span>
+                Company Details
+              </h5>
+              <p class="text-muted mb-4" style="font-size:.87rem;padding-left:40px;">Legal entity information as registered with the Companies Office.</p>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Legal Company Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="companyName" required placeholder="e.g. Acme Construction Ltd">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Trading Name <span class="text-muted fw-normal">(if different)</span></label>
+                  <input type="text" class="form-control" name="tradingName" placeholder="e.g. Acme Builds">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">NZBN</label>
+                  <input type="text" class="form-control" name="nzbn" placeholder="13-digit NZ Business Number">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">GST Number</label>
+                  <input type="text" class="form-control" name="gstNumber" placeholder="e.g. 123-456-789">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Business Type <span class="text-danger">*</span></label>
+                  <select class="form-select" name="businessType" required>
+                    <option value="" disabled selected>Select…</option>
+                    <option>Limited Company</option>
+                    <option>Sole Trader</option>
+                    <option>Partnership</option>
+                    <option>Trust</option>
+                    <option>Government / Council</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Industry / Trade <span class="text-danger">*</span></label>
+                  <select class="form-select" name="industry" required>
+                    <option value="" disabled selected>Select…</option>
+                    <option>Construction</option>
+                    <option>Civil / Infrastructure</option>
+                    <option>Roofing</option>
+                    <option>Electrical</option>
+                    <option>Mechanical / HVAC</option>
+                    <option>Painting / Plastering</option>
+                    <option>Scaffolding</option>
+                    <option>Events / Entertainment</option>
+                    <option>Property Management</option>
+                    <option>Government / Council</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Registered Business Address <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="businessAddress" required placeholder="Street address, suburb, city, postcode">
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Postal Address <span class="text-muted fw-normal">(if different from above)</span></label>
+                  <input type="text" class="form-control" name="postalAddress" placeholder="PO Box or street address">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Primary Contact -->
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h5 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-circle text-white" style="width:28px;height:28px;background:var(--black);font-size:.8rem;flex-shrink:0;">2</span>
+                Primary Contact
+              </h5>
+              <p class="text-muted mb-4" style="font-size:.87rem;padding-left:40px;">The person responsible for managing this account.</p>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Full Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="contactName" required placeholder="First and last name">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Position / Title <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="contactPosition" required placeholder="e.g. Site Manager, Director">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Phone <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" name="contactPhone" required placeholder="e.g. 021 123 4567">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" name="contactEmail" required placeholder="e.g. accounts@company.co.nz">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Accounts / Invoicing Email <span class="text-muted fw-normal">(if different)</span></label>
+                  <input type="email" class="form-control" name="accountsEmail" placeholder="e.g. invoices@company.co.nz">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Accounts / Invoicing Phone <span class="text-muted fw-normal">(if different)</span></label>
+                  <input type="tel" class="form-control" name="accountsPhone" placeholder="e.g. 09 123 4567">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Credit & Delivery -->
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h5 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-circle text-white" style="width:28px;height:28px;background:var(--black);font-size:.8rem;flex-shrink:0;">3</span>
+                Credit &amp; Delivery
+              </h5>
+              <p class="text-muted mb-4" style="font-size:.87rem;padding-left:40px;">Your estimated usage and preferred delivery areas.</p>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Requested Credit Limit <span class="text-danger">*</span></label>
+                  <select class="form-select" name="creditLimit" required>
+                    <option value="" disabled selected>Select…</option>
+                    <option>Up to $2,500</option>
+                    <option>$2,500 – $5,000</option>
+                    <option>$5,000 – $10,000</option>
+                    <option>$10,000 – $25,000</option>
+                    <option>$25,000+</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Estimated Monthly Spend</label>
+                  <select class="form-select" name="monthlySpend">
+                    <option value="" disabled selected>Select…</option>
+                    <option>Under $1,000</option>
+                    <option>$1,000 – $3,000</option>
+                    <option>$3,000 – $7,500</option>
+                    <option>$7,500 – $15,000</option>
+                    <option>$15,000+</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Primary Delivery / Work Area(s) <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="deliveryAreas" required placeholder="e.g. Auckland CBD, Manukau, Waikato">
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Equipment Typically Required</label>
+                  <div class="row g-2 mt-1">
+                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="equip_electric" id="equip_electric" value="Electric Scissor Lifts"><label class="form-check-label" for="equip_electric" style="font-size:.87rem;">Electric Scissor Lifts</label></div></div>
+                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="equip_diesel" id="equip_diesel" value="Diesel Rough Terrain Scissors"><label class="form-check-label" for="equip_diesel" style="font-size:.87rem;">Diesel Rough Terrain</label></div></div>
+                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="equip_boom" id="equip_boom" value="Boom Lifts"><label class="form-check-label" for="equip_boom" style="font-size:.87rem;">Boom Lifts</label></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Trade References -->
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h5 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-circle text-white" style="width:28px;height:28px;background:var(--black);font-size:.8rem;flex-shrink:0;">4</span>
+                Trade References
+              </h5>
+              <p class="text-muted mb-4" style="font-size:.87rem;padding-left:40px;">Please provide two trade references — suppliers or businesses you currently hold accounts with.</p>
+
+              <!-- Reference 1 -->
+              <p class="fw-semibold mb-2" style="font-size:.88rem;">Reference 1</p>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label" style="font-size:.85rem;">Company Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="ref1Company" required placeholder="Supplier or creditor name">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-size:.85rem;">Contact Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="ref1Contact" required placeholder="Accounts contact">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-size:.85rem;">Phone <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" name="ref1Phone" required placeholder="Phone number">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-size:.85rem;">Email</label>
+                  <input type="email" class="form-control" name="ref1Email" placeholder="Email address">
+                </div>
+              </div>
+
+              <!-- Reference 2 -->
+              <p class="fw-semibold mb-2" style="font-size:.88rem;">Reference 2</p>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" style="font-size:.85rem;">Company Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="ref2Company" required placeholder="Supplier or creditor name">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-size:.85rem;">Contact Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="ref2Contact" required placeholder="Accounts contact">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-size:.85rem;">Phone <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" name="ref2Phone" required placeholder="Phone number">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-size:.85rem;">Email</label>
+                  <input type="email" class="form-control" name="ref2Email" placeholder="Email address">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Declaration -->
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h5 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-circle text-white" style="width:28px;height:28px;background:var(--black);font-size:.8rem;flex-shrink:0;">5</span>
+                Declaration &amp; Agreement
+              </h5>
+              <p class="text-muted mt-2 mb-4" style="font-size:.87rem;padding-left:40px;">Please read and agree before submitting.</p>
+
+              <div class="p-3 rounded mb-4" style="background:#f8f9fa;border:1px solid var(--border);font-size:.83rem;line-height:1.7;color:#555;">
+                By submitting this application, the applicant acknowledges and agrees that:
+                <ul class="mt-2 mb-0 ps-3">
+                  <li>All information provided is accurate and complete to the best of their knowledge.</li>
+                  <li>Scissor And Boom Height Access Ltd may conduct credit checks and contact the nominated references.</li>
+                  <li>Credit terms are 30 days from invoice date unless otherwise agreed in writing.</li>
+                  <li>All hire is subject to Scissor And Boom's standard <a href="/terms-and-conditions" target="_blank" class="text-dark fw-semibold">Terms &amp; Conditions of Hire</a>.</li>
+                  <li>Scissor And Boom reserves the right to decline any application or withdraw credit facilities at any time.</li>
+                  <li>Any director, partner or proprietor signing this form may be required to provide a personal guarantee.</li>
+                </ul>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Full Name (Authorised Signatory) <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="signatoryName" required placeholder="Name of person submitting">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Position <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="signatoryPosition" required placeholder="e.g. Director, Manager">
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold" style="font-size:.88rem;">Additional Notes</label>
+                  <textarea class="form-control" name="additionalNotes" rows="3" placeholder="Anything else you'd like us to know…"></textarea>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label class="form-check-label" for="agreeTerms" style="font-size:.88rem;">
+                      I confirm the information above is correct and I agree to Scissor And Boom's <a href="/terms-and-conditions" target="_blank" class="text-dark fw-semibold">Terms &amp; Conditions</a>. <span class="text-danger">*</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column flex-sm-row gap-3 align-items-sm-center">
+            <button type="submit" class="btn-primary-custom px-5" id="submitBtn">
+              <i class="bi bi-send me-2"></i>Submit Application
+            </button>
+            <p class="text-muted mb-0" style="font-size:.82rem;"><i class="bi bi-shield-lock me-1"></i>Your information is kept confidential and used only for account processing.</p>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Band -->
+<section class="section-pad-sm" style="background:var(--yellow);">
+  <div class="container text-center">
+    <h3 class="fw-bold mb-2" style="color:var(--black);">Questions About Your Application?</h3>
+    <p style="color:rgba(0,0,0,.65);margin-bottom:24px;">Call us on <strong>0800 250 081</strong> or email <strong>hire@scissorandboom.co.nz</strong> and we'll help you through it.</p>
+    <a href="tel:08002500181" class="btn-primary-custom" style="background:var(--black);color:#fff;"><i class="bi bi-telephone me-2"></i>Call Us Now</a>
+  </div>
+</section>
+
+<%- include('partials/_footer') %>
+
+<script>
+document.getElementById('accountForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+
+  // Basic HTML5 validation
+  if (!form.checkValidity()) {
+    form.querySelectorAll(':invalid').forEach(el => el.classList.add('is-invalid'));
+    form.querySelector(':invalid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Submitting…';
+
+  // Gather checkbox values
+  const equipment = [];
+  ['equip_electric','equip_diesel','equip_boom'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.checked) equipment.push(el.value);
+  });
+
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.equipmentNeeded = equipment.join(', ') || 'Not specified';
+
+  try {
+    const res = await fetch('/api/account', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (json.success) {
+      document.getElementById('successMsg').classList.remove('d-none');
+      form.classList.add('d-none');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      throw new Error('Server error');
+    }
+  } catch {
+    document.getElementById('errorMsg').classList.remove('d-none');
+    btn.disabled = false;
+    btn.innerHTML = '<i class="bi bi-send me-2"></i>Submit Application';
+  }
+});
+
+// Clear invalid state on input
+document.getElementById('accountForm').querySelectorAll('input,select,textarea').forEach(el => {
+  el.addEventListener('input', () => el.classList.remove('is-invalid'));
+});
+</script>

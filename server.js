@@ -136,6 +136,7 @@ app.get('/sitemap.xml', (req, res) => {
     { loc: '/book-online',          priority: '0.8', changefreq: 'monthly' },
     { loc: '/contact-us',           priority: '0.7', changefreq: 'yearly'  },
     { loc: '/about-us',             priority: '0.6', changefreq: 'yearly'  },
+    { loc: '/account-application',  priority: '0.5', changefreq: 'yearly'  },
     { loc: '/terms-and-conditions', priority: '0.2', changefreq: 'yearly'  },
   ];
   const today = new Date().toISOString().split('T')[0];
@@ -152,6 +153,101 @@ ${pages.map(p => `  <url>
   res.send(xml);
 });
 
+// ── Account Application API ───────────────────────────────────
+app.post('/api/account', async (req, res) => {
+  try {
+    const d = req.body;
+    if (!d.companyName || !d.contactName || !d.contactPhone || !d.contactEmail) {
+      return res.status(400).json({ error: 'Missing required fields.' });
+    }
+
+    const row = (label, value) => value
+      ? `<tr><td style="padding:5px 0;color:#666;width:200px;vertical-align:top;">${label}</td><td style="padding:5px 0;font-weight:600;">${value}</td></tr>`
+      : '';
+
+    await resend.emails.send({
+      from: 'Scissor and Boom <hello@clouston.net>',
+      to: 'hire@scissorandboom.co.nz',
+      replyTo: d.contactEmail,
+      subject: `New Account Application — ${d.companyName}`,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:680px;margin:0 auto;color:#212529;">
+          <div style="background:#0a0a0a;padding:24px 32px;border-bottom:4px solid #e6cc17;">
+            <h2 style="color:#e6cc17;margin:0;font-size:20px;">New Account Application</h2>
+            <p style="color:#aaa;margin:6px 0 0;font-size:13px;">Submitted via scissorandboom.co.nz</p>
+          </div>
+          <div style="padding:28px 32px;">
+
+            <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:12px;">Company Details</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              ${row('Legal Company Name', d.companyName)}
+              ${row('Trading Name', d.tradingName)}
+              ${row('NZBN', d.nzbn)}
+              ${row('GST Number', d.gstNumber)}
+              ${row('Business Type', d.businessType)}
+              ${row('Industry', d.industry)}
+              ${row('Business Address', d.businessAddress)}
+              ${row('Postal Address', d.postalAddress)}
+            </table>
+
+            <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin:24px 0 12px;">Primary Contact</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              ${row('Name', d.contactName)}
+              ${row('Position', d.contactPosition)}
+              ${row('Phone', d.contactPhone)}
+              ${row('Email', d.contactEmail)}
+              ${row('Accounts Email', d.accountsEmail)}
+              ${row('Accounts Phone', d.accountsPhone)}
+            </table>
+
+            <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin:24px 0 12px;">Credit &amp; Delivery</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              ${row('Requested Credit Limit', d.creditLimit)}
+              ${row('Est. Monthly Spend', d.monthlySpend)}
+              ${row('Delivery Areas', d.deliveryAreas)}
+              ${row('Equipment Needed', d.equipmentNeeded)}
+            </table>
+
+            <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin:24px 0 12px;">Trade References</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              <tr><td colspan="2" style="padding:4px 0;font-weight:700;color:#333;">Reference 1</td></tr>
+              ${row('Company', d.ref1Company)}
+              ${row('Contact', d.ref1Contact)}
+              ${row('Phone', d.ref1Phone)}
+              ${row('Email', d.ref1Email)}
+              <tr><td colspan="2" style="padding:12px 0 4px;font-weight:700;color:#333;">Reference 2</td></tr>
+              ${row('Company', d.ref2Company)}
+              ${row('Contact', d.ref2Contact)}
+              ${row('Phone', d.ref2Phone)}
+              ${row('Email', d.ref2Email)}
+            </table>
+
+            <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin:24px 0 12px;">Declaration</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              ${row('Authorised Signatory', d.signatoryName)}
+              ${row('Position', d.signatoryPosition)}
+              ${row('Agreed to Terms', d.agreeTerms ? 'Yes' : 'No')}
+            </table>
+
+            ${d.additionalNotes ? `
+            <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#e6cc17;border-bottom:1px solid #eee;padding-bottom:8px;margin:24px 0 12px;">Additional Notes</h3>
+            <p style="font-size:14px;line-height:1.6;margin:0;">${d.additionalNotes.replace(/\n/g, '<br>')}</p>
+            ` : ''}
+          </div>
+          <div style="background:#f8f9fa;padding:16px 32px;border-top:1px solid #eee;">
+            <p style="font-size:12px;color:#999;margin:0;">Submitted from the Scissor and Boom account application form</p>
+          </div>
+        </div>
+      `,
+    });
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Account application error:', err);
+    res.status(500).json({ error: 'Failed to send application.' });
+  }
+});
+
 app.get('/', (req, res) => res.render('index'));
 app.get('/equipment', (req, res) => res.render('equipment'));
 app.get('/about-us', (req, res) => res.render('about-us'));
@@ -159,6 +255,7 @@ app.get('/contact-us', (req, res) => res.render('contact-us'));
 app.get('/book-online', (req, res) => res.render('book-online'));
 app.get('/pricing', (req, res) => res.render('pricing'));
 app.get('/terms-and-conditions', (req, res) => res.render('terms-and-conditions'));
+app.get('/account-application', (req, res) => res.render('account-application'));
 
 // Redirect old .html URLs to clean URLs
 const redirects = {
@@ -168,7 +265,7 @@ const redirects = {
   '/contact-us.html': '/contact-us',
   '/book-online.html': '/book-online',
   '/terms-and-conditions.html': '/terms-and-conditions',
-  '/account-application.html': '/terms-and-conditions',
+  '/account-application.html': '/account-application',
 };
 Object.entries(redirects).forEach(([from, to]) => {
   app.get(from, (req, res) => res.redirect(301, to));
