@@ -149,25 +149,25 @@ Working heights are rounded to the nearest whole metre (standard rounding — .5
 ### Electric Scissor Lifts
 Best for: indoor work, smooth or hard surfaces, zero emissions required.
 
-| Model | Working Height | Capacity | Rate |
-|-------|---------------|----------|------|
-| 0608E | 8m (7.8m actual) | 230kg | $125/day |
-| 0812E | 10m (10.1m actual) | 450kg | $150/day |
-| 1414E+ | 16m (15.8m actual) | 350kg | $190/day |
+| Model | Working Height | Capacity | Daily | Weekly | Transport (each way) |
+|-------|---------------|----------|-------|--------|----------------------|
+| 0608ME | 8m (7.8m actual) | 230kg | $125 | $350 | $150 |
+| 0812E | 10m (10.1m actual) | 450kg | $150 | $395 | $150 |
+| 1414E+ | 16m (15.8m actual) | 350kg | $190 | $500 | $185 |
 
 Key specs:
-- 0608E: platform 1.64×0.76m, stowed width 0.81m, weight 1,575kg
+- 0608ME: platform 1.64×0.76m, stowed width 0.81m, weight 1,575kg
 - 0812E: platform 2.30×1.15m, stowed width 1.17m, weight 2,715kg
 - 1414E+: platform 2.64×1.30m, stowed width 1.41m, weight 3,660kg
 
 ### Diesel Rough Terrain Scissor Lifts
 Best for: outdoor construction sites, uneven or rough ground, 4WD.
 
-| Model | Working Height | Capacity | Rate |
-|-------|---------------|----------|------|
-| 1018RD | 12m | 450kg | $240/day |
-| 1218RD | 14m (14.2m actual) | 450kg | $265/day |
-| 1623RD | 18m (18.2m actual) | 680kg | $405/day |
+| Model | Working Height | Capacity | Daily | Weekly | Transport (each way) |
+|-------|---------------|----------|-------|--------|----------------------|
+| 1018RD | 12m | 450kg | $240 | $710 | $185 |
+| 1218RD | 14m (14.2m actual) | 450kg | $265 | $790 | $185 |
+| 1623RD | 18m (18.2m actual) | 680kg | $405 | $1,210 | $275 |
 
 Key specs:
 - 1018RD: platform 2.8×1.6m, weight 4,110kg
@@ -177,17 +177,20 @@ Key specs:
 ### Diesel Boom Lifts
 Best for: reaching over obstacles, working at angles, large heights. Articulated.
 
-| Model | Working Height | Horizontal Reach | Capacity | Rate |
-|-------|---------------|-----------------|----------|------|
-| AB15J | 17m (16.7m actual) | 8.5m | 250kg | $280/day |
-| AB18J | 20m (20.3m actual) | 12.2m | 250kg | $360/day |
-| AB25J | 27m (26.6m actual) | 16.1m | 230kg | POA |
+| Model | Working Height | Horizontal Reach | Capacity | Daily | Weekly | Transport (each way) |
+|-------|---------------|-----------------|----------|-------|--------|----------------------|
+| AB15J | 17m (16.7m actual) | 8.5m | 250kg | $280 | $980 | $275 |
+| AB18J | 20m (20.3m actual) | 12.2m | 250kg | $360 | $1,135 | $275 |
+| AB25J | 27m (26.6m actual) | 16.1m | 230kg | POA | POA | POA |
 
-## Pricing
-- All rates are ex-GST and exclude delivery. Minimum hire 1 day.
-- Weekly rates apply for 5-day hires; discounted 4-week rates for longer projects.
-- AB25J is POA — call or email for a quote.
-- A full price list PDF is available to download at /pricing.
+## Pricing & additional charges
+- All rates ex-GST, in NZD. Valid 1 June – 30 September 2026.
+- Minimum hire 1 day. Monthly rates available on request — call or email.
+- **Insurance:** 8.5% of the hire charge applies.
+- **Diesel fuel:** $4.50 per litre if required.
+- **Transport:** rates above apply to Greater Auckland / Bombay Hills / Albany. Other regions POA. A variable fuel surcharge applies to transport costs.
+- AB25J is fully POA — call or email for a quote.
+- Full price list PDF available to download at /pricing.
 
 ## Booking
 - Book online at /book-online — same-day confirmation during business hours.
