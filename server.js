@@ -272,9 +272,9 @@ Best for: indoor work, smooth or hard surfaces, zero emissions required.
 
 | Model | Working Height | Capacity | Daily | Weekly | Monthly | Transport (each way) |
 |-------|---------------|----------|-------|--------|---------|----------------------|
-| 0608ME | 8m (7.8m actual) | 230kg | $125 | $350 | $800 | $150 |
-| 0812E | 10m (10.1m actual) | 450kg | $150 | $395 | $850 | $150 |
-| 1414E+ | 16m (15.8m actual) | 350kg | $190 | $500 | $1,200 | $185 |
+| 0608ME | 8m (7.8m actual) | 230kg | $125 | $350 | $800 | $205 |
+| 0812E | 10m (10.1m actual) | 450kg | $150 | $395 | $850 | $205 |
+| 1414E+ | 16m (15.8m actual) | 350kg | $190 | $500 | $1,200 | $205 |
 
 Key specs:
 - 0608ME: platform 1.64×0.76m, stowed width 0.81m, weight 1,575kg
@@ -286,9 +286,9 @@ Best for: outdoor construction sites, uneven or rough ground, 4WD.
 
 | Model | Working Height | Capacity | Daily | Weekly | Monthly | Transport (each way) |
 |-------|---------------|----------|-------|--------|---------|----------------------|
-| 1018RD | 12m | 450kg | $240 | $710 | $2,000 | $185 |
-| 1218RD | 14m (14.2m actual) | 450kg | $265 | $790 | $2,100 | $185 |
-| 1623RD | 18m (18.2m actual) | 680kg | $405 | $1,210 | $3,000 | $275 |
+| 1018RD | 12m | 450kg | $240 | $710 | $2,000 | $255 |
+| 1218RD | 14m (14.2m actual) | 450kg | $265 | $790 | $2,100 | $255 |
+| 1623RD | 18m (18.2m actual) | 680kg | $405 | $1,210 | $3,000 | $295 |
 
 Key specs:
 - 1018RD: platform 2.8×1.6m, weight 4,110kg
@@ -300,8 +300,8 @@ Best for: reaching over obstacles, working at angles, large heights. Articulated
 
 | Model | Working Height | Horizontal Reach | Capacity | Daily | Weekly | Monthly | Transport (each way) |
 |-------|---------------|-----------------|----------|-------|--------|---------|----------------------|
-| AB15J | 17m (16.7m actual) | 8.5m | 250kg | $280 | $980 | $2,600 | $275 |
-| AB18J | 20m (20.3m actual) | 12.2m | 250kg | $360 | $1,135 | $2,700 | $275 |
+| AB15J | 17m (16.7m actual) | 8.5m | 250kg | $280 | $980 | $2,600 | $295 |
+| AB18J | 20m (20.3m actual) | 12.2m | 250kg | $360 | $1,135 | $2,700 | $295 |
 | AB25J | 27m (26.6m actual) | 16.1m | 230kg | POA | POA | POA | POA |
 
 ## Pricing & additional charges
@@ -309,7 +309,7 @@ Best for: reaching over obstacles, working at angles, large heights. Articulated
 - Minimum hire 1 day. Monthly rates available on request — call or email.
 - **Insurance:** 8.5% of the hire charge applies.
 - **Diesel fuel:** $4.50 per litre if required.
-- **Transport:** rates above apply to Greater Auckland / Bombay Hills / Albany. Other regions POA. A variable fuel surcharge applies to transport costs.
+- **Transport:** rates above apply to Greater Auckland / Bombay Hills / Albany. Other regions POA. A variable fuel surcharge is added to all transport costs — always mention this when quoting transport.
 - AB25J is fully POA — call or email for a quote.
 - Full price list PDF available to download at /pricing.
 

@@ -24,24 +24,24 @@ const sections = [
   {
     title: 'Electric Scissor Lifts',
     rows: [
-      { model: '0608ME', desc: 'Electric Scissor Lift (810mm wide)',  platform: '5.8m',  working: '7.8m',  daily: '$125', weekly: '$350',   monthly: '$800',   transport: '$150' },
-      { model: '0812E',  desc: 'Electric Scissor Lift (1170mm wide)', platform: '8.1m',  working: '10.1m', daily: '$150', weekly: '$395',   monthly: '$850',   transport: '$150' },
-      { model: '1414E+', desc: 'Electric Scissor Lift (1410mm wide)', platform: '13.8m', working: '15.8m', daily: '$190', weekly: '$500',   monthly: '$1,200', transport: '$185' },
+      { model: '0608ME', desc: 'Electric Scissor Lift (810mm wide)',  platform: '5.8m',  working: '7.8m',  daily: '$125', weekly: '$350',   monthly: '$800',   transport: '$205' },
+      { model: '0812E',  desc: 'Electric Scissor Lift (1170mm wide)', platform: '8.1m',  working: '10.1m', daily: '$150', weekly: '$395',   monthly: '$850',   transport: '$205' },
+      { model: '1414E+', desc: 'Electric Scissor Lift (1410mm wide)', platform: '13.8m', working: '15.8m', daily: '$190', weekly: '$500',   monthly: '$1,200', transport: '$205' },
     ],
   },
   {
     title: 'All Terrain Scissor Lifts (4WD Diesel)',
     rows: [
-      { model: '1018RD', desc: 'Diesel Rough Terrain Scissor Lift', platform: '10m',   working: '12m',   daily: '$240', weekly: '$710',   monthly: '$2,000', transport: '$185' },
-      { model: '1218RD', desc: 'Diesel Rough Terrain Scissor Lift', platform: '12.2m', working: '14.2m', daily: '$265', weekly: '$790',   monthly: '$2,100', transport: '$185' },
-      { model: '1623RD', desc: 'Diesel Rough Terrain Scissor Lift', platform: '16.2m', working: '18.2m', daily: '$405', weekly: '$1,210', monthly: '$3,000', transport: '$275' },
+      { model: '1018RD', desc: 'Diesel Rough Terrain Scissor Lift', platform: '10m',   working: '12m',   daily: '$240', weekly: '$710',   monthly: '$2,000', transport: '$255' },
+      { model: '1218RD', desc: 'Diesel Rough Terrain Scissor Lift', platform: '12.2m', working: '14.2m', daily: '$265', weekly: '$790',   monthly: '$2,100', transport: '$255' },
+      { model: '1623RD', desc: 'Diesel Rough Terrain Scissor Lift', platform: '16.2m', working: '18.2m', daily: '$405', weekly: '$1,210', monthly: '$3,000', transport: '$295' },
     ],
   },
   {
     title: 'Diesel Articulating Boom Lifts',
     rows: [
-      { model: 'AB15J', desc: 'Diesel Articulated Boom Lift', platform: '14.7m', working: '16.7m', daily: '$280', weekly: '$980',   monthly: '$2,600', transport: '$275' },
-      { model: 'AB18J', desc: 'Diesel Articulated Boom Lift', platform: '18.3m', working: '20.3m', daily: '$360', weekly: '$1,135', monthly: '$2,700', transport: '$275' },
+      { model: 'AB15J', desc: 'Diesel Articulated Boom Lift', platform: '14.7m', working: '16.7m', daily: '$280', weekly: '$980',   monthly: '$2,600', transport: '$295' },
+      { model: 'AB18J', desc: 'Diesel Articulated Boom Lift', platform: '18.3m', working: '20.3m', daily: '$360', weekly: '$1,135', monthly: '$2,700', transport: '$295' },
       { model: 'AB25J', desc: 'Diesel Articulated Boom Lift', platform: '24.6m', working: '26.6m', daily: 'POA',  weekly: 'POA',    monthly: 'POA',    transport: 'POA'  },
     ],
   },
