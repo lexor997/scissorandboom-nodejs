@@ -149,11 +149,11 @@ Working heights are rounded to the nearest whole metre (standard rounding — .5
 ### Electric Scissor Lifts
 Best for: indoor work, smooth or hard surfaces, zero emissions required.
 
-| Model | Working Height | Capacity | Daily | Weekly | Transport (each way) |
-|-------|---------------|----------|-------|--------|----------------------|
-| 0608ME | 8m (7.8m actual) | 230kg | $125 | $350 | $150 |
-| 0812E | 10m (10.1m actual) | 450kg | $150 | $395 | $150 |
-| 1414E+ | 16m (15.8m actual) | 350kg | $190 | $500 | $185 |
+| Model | Working Height | Capacity | Daily | Weekly | Monthly | Transport (each way) |
+|-------|---------------|----------|-------|--------|---------|----------------------|
+| 0608ME | 8m (7.8m actual) | 230kg | $125 | $350 | $800 | $150 |
+| 0812E | 10m (10.1m actual) | 450kg | $150 | $395 | $850 | $150 |
+| 1414E+ | 16m (15.8m actual) | 350kg | $190 | $500 | $1,200 | $185 |
 
 Key specs:
 - 0608ME: platform 1.64×0.76m, stowed width 0.81m, weight 1,575kg
@@ -163,11 +163,11 @@ Key specs:
 ### Diesel Rough Terrain Scissor Lifts
 Best for: outdoor construction sites, uneven or rough ground, 4WD.
 
-| Model | Working Height | Capacity | Daily | Weekly | Transport (each way) |
-|-------|---------------|----------|-------|--------|----------------------|
-| 1018RD | 12m | 450kg | $240 | $710 | $185 |
-| 1218RD | 14m (14.2m actual) | 450kg | $265 | $790 | $185 |
-| 1623RD | 18m (18.2m actual) | 680kg | $405 | $1,210 | $275 |
+| Model | Working Height | Capacity | Daily | Weekly | Monthly | Transport (each way) |
+|-------|---------------|----------|-------|--------|---------|----------------------|
+| 1018RD | 12m | 450kg | $240 | $710 | $2,000 | $185 |
+| 1218RD | 14m (14.2m actual) | 450kg | $265 | $790 | $2,100 | $185 |
+| 1623RD | 18m (18.2m actual) | 680kg | $405 | $1,210 | $3,000 | $275 |
 
 Key specs:
 - 1018RD: platform 2.8×1.6m, weight 4,110kg
@@ -177,11 +177,11 @@ Key specs:
 ### Diesel Boom Lifts
 Best for: reaching over obstacles, working at angles, large heights. Articulated.
 
-| Model | Working Height | Horizontal Reach | Capacity | Daily | Weekly | Transport (each way) |
-|-------|---------------|-----------------|----------|-------|--------|----------------------|
-| AB15J | 17m (16.7m actual) | 8.5m | 250kg | $280 | $980 | $275 |
-| AB18J | 20m (20.3m actual) | 12.2m | 250kg | $360 | $1,135 | $275 |
-| AB25J | 27m (26.6m actual) | 16.1m | 230kg | POA | POA | POA |
+| Model | Working Height | Horizontal Reach | Capacity | Daily | Weekly | Monthly | Transport (each way) |
+|-------|---------------|-----------------|----------|-------|--------|---------|----------------------|
+| AB15J | 17m (16.7m actual) | 8.5m | 250kg | $280 | $980 | $2,600 | $275 |
+| AB18J | 20m (20.3m actual) | 12.2m | 250kg | $360 | $1,135 | $2,700 | $275 |
+| AB25J | 27m (26.6m actual) | 16.1m | 230kg | POA | POA | POA | POA |
 
 ## Pricing & additional charges
 - All rates ex-GST, in NZD. Valid 1 June – 30 September 2026.
