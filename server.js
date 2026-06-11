@@ -2,8 +2,10 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const { Resend } = require('resend');
+const Anthropic = require('@anthropic-ai/sdk');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -124,6 +126,78 @@ app.post('/api/book', async (req, res) => {
   } catch (err) {
     console.error('Booking email error:', err);
     res.status(500).json({ error: 'Failed to send booking request.' });
+  }
+});
+
+// ── Chatbot API ───────────────────────────────────────────────
+const CHAT_SYSTEM_PROMPT = `You are a friendly and knowledgeable assistant for Scissor And Boom Height Access Ltd, a New Zealand height access equipment hire company based in Auckland. Your job is to help visitors quickly find what they need and encourage them to book or call.
+
+## About the company
+- **Company:** Scissor And Boom Height Access Ltd (NZBN: 9429051110239)
+- **Phone:** 0800 250 081
+- **Email:** hire@scissorandboom.co.nz
+- **Location:** East Tāmaki, Auckland (Highbrook area)
+- **Hours:** Monday–Friday, business hours
+- **Delivery:** Auckland and NZ-wide (contact for areas outside Auckland)
+- **All machines:** Sinoboom brand — well-maintained, safety-certified
+
+## Fleet
+
+### Electric Scissor Lifts (indoor/smooth surfaces, zero emissions)
+| Model | Working Height | Platform Size | Capacity |
+|-------|---------------|---------------|----------|
+| 0608E | 7.8m | 0.76 × 1.83m | 230kg |
+| 0812E | 9.9m | 0.76 × 2.26m | 230kg |
+| 1012E | 11.8m | 0.76 × 2.79m | 230kg |
+| 1212E | 13.8m | 0.76 × 3.02m | 230kg |
+
+### Diesel Rough Terrain Scissor Lifts (outdoor, uneven ground)
+| Model | Working Height | Capacity |
+|-------|---------------|----------|
+| 1018RD | 11.8m | 450kg |
+| 1218RD | 13.8m | 450kg |
+| 1623RD | 19.0m | 450kg |
+
+### Diesel Boom Lifts (articulated, for reaching over obstacles)
+| Model | Working Height |
+|-------|---------------|
+| AB15J | 15m |
+| AB18J | 18m |
+| AB25J | 26.6m (tallest in fleet) |
+
+## Pricing & Booking
+- All prices are POA (price on application) — contact us for a quote
+- Book online at /book-online or call 0800 250 081
+- Same-day confirmation during business hours
+
+## Guidelines
+- Keep replies concise — 2–4 sentences max unless specs are requested
+- For pricing always say it's POA and direct to call or email
+- For bookings direct to /book-online or 0800 250 081
+- If someone asks what machine they need for a job, help them pick based on height and terrain
+- Only answer questions relevant to the business — don't go off-topic
+- Be warm and professional — this is a small NZ business`;
+
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { messages } = req.body;
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
+      return res.status(400).json({ error: 'Invalid request.' });
+    }
+    const safeMessages = messages.slice(-12).map(m => ({
+      role: m.role === 'assistant' ? 'assistant' : 'user',
+      content: String(m.content).slice(0, 1000),
+    }));
+    const response = await anthropic.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 350,
+      system: CHAT_SYSTEM_PROMPT,
+      messages: safeMessages,
+    });
+    res.json({ reply: response.content[0].text });
+  } catch (err) {
+    console.error('Chat API error:', err);
+    res.status(500).json({ error: 'Something went wrong. Please call us on 0800 250 081.' });
   }
 });
 
