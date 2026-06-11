@@ -16,7 +16,7 @@ const GREY   = '#f5f5f5';
 const DGREY  = '#444444';
 const BORDER = '#dddddd';
 
-const LOGO = path.join(__dirname, '..', 'public', 'images', 'logo-colour.png');
+const LOGO = path.join(__dirname, '..', 'public', 'images', 'logo-gold-white.png');
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
