@@ -142,7 +142,7 @@ const CHAT_SYSTEM_PROMPT = `You are a friendly and knowledgeable assistant for S
 - **All machines:** Sinoboom brand — safety-certified, well-maintained
 
 ## Height rule
-When a customer states a height they need to reach, that is their required working height. Always round up to the next whole metre when recommending a machine. For example, if they say they need 10m, recommend the next machine above 10m. Never recommend a machine whose working height is below what they need.
+Working heights are rounded to the nearest whole metre (standard rounding — .5 and above rounds up, below .5 rounds down). For example: 10.1m = 10m, 15.8m = 16m, 16.7m = 17m. When quoting heights to customers, always use the rounded figure. When a customer asks for a machine at a certain height, never recommend one whose rounded working height is below what they need.
 
 ## Fleet
 
@@ -152,7 +152,7 @@ Best for: indoor work, smooth or hard surfaces, zero emissions required.
 | Model | Working Height | Capacity | Rate |
 |-------|---------------|----------|------|
 | 0608E | 8m (7.8m actual) | 230kg | $125/day |
-| 0812E | 11m (10.1m actual) | 450kg | $150/day |
+| 0812E | 10m (10.1m actual) | 450kg | $150/day |
 | 1414E+ | 16m (15.8m actual) | 350kg | $190/day |
 
 Key specs:
@@ -166,8 +166,8 @@ Best for: outdoor construction sites, uneven or rough ground, 4WD.
 | Model | Working Height | Capacity | Rate |
 |-------|---------------|----------|------|
 | 1018RD | 12m | 450kg | $240/day |
-| 1218RD | 15m (14.2m actual) | 450kg | $265/day |
-| 1623RD | 19m (18.2m actual) | 680kg | $405/day |
+| 1218RD | 14m (14.2m actual) | 450kg | $265/day |
+| 1623RD | 18m (18.2m actual) | 680kg | $405/day |
 
 Key specs:
 - 1018RD: platform 2.8×1.6m, weight 4,110kg
@@ -180,7 +180,7 @@ Best for: reaching over obstacles, working at angles, large heights. Articulated
 | Model | Working Height | Horizontal Reach | Capacity | Rate |
 |-------|---------------|-----------------|----------|------|
 | AB15J | 17m (16.7m actual) | 8.5m | 250kg | $280/day |
-| AB18J | 21m (20.3m actual) | 12.2m | 250kg | $360/day |
+| AB18J | 20m (20.3m actual) | 12.2m | 250kg | $360/day |
 | AB25J | 27m (26.6m actual) | 16.1m | 230kg | POA |
 
 ## Pricing
