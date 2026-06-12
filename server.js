@@ -122,6 +122,31 @@ app.post('/api/book', async (req, res) => {
       `,
     });
 
+    // Mirror the booking into the fleet app's enquiries list. The email above
+    // has already gone out, so a fleet-app outage never loses a booking.
+    if (process.env.FLEET_BOOKING_URL && process.env.FLEET_BOOKING_TOKEN) {
+      try {
+        const fleetRes = await fetch(process.env.FLEET_BOOKING_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Booking-Token': process.env.FLEET_BOOKING_TOKEN,
+          },
+          body: JSON.stringify({
+            fullName: name, phone, email, company,
+            equipmentType: equipment, quantity,
+            startDate, endDate, deliveryAddress, accessNotes,
+            comments: extraInfo,
+          }),
+        });
+        if (!fleetRes.ok) {
+          console.error('Fleet booking forward failed:', fleetRes.status, await fleetRes.text());
+        }
+      } catch (err) {
+        console.error('Fleet booking forward error:', err);
+      }
+    }
+
     res.json({ success: true });
   } catch (err) {
     console.error('Booking email error:', err);
