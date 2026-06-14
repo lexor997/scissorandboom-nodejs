@@ -3,6 +3,7 @@ const path = require('path');
 require('dotenv').config();
 const { Resend } = require('resend');
 const Anthropic = require('@anthropic-ai/sdk');
+const { formGuard, isAllowedOrigin, rateLimit, clientIp } = require('./security');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -11,13 +12,20 @@ const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.set('trust proxy', 1); // Vercel sits in front — needed for real client IPs
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Expose the Turnstile site key (public) to all views.
+app.use((req, res, next) => {
+  res.locals.TURNSTILE_SITE_KEY = process.env.TURNSTILE_SITE_KEY || '';
+  next();
+});
+
 // ── Contact form API ─────────────────────────────────────────
-app.post('/api/contact', async (req, res) => {
+app.post('/api/contact', formGuard(), async (req, res) => {
   try {
     const { full_name, phone_number, email, enquiry_type, message } = req.body;
 
@@ -63,7 +71,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 // ── Booking form API ──────────────────────────────────────────
-app.post('/api/book', async (req, res) => {
+app.post('/api/book', formGuard(), async (req, res) => {
   try {
     const {
       name, email, phone, company,
@@ -181,7 +189,7 @@ ${pages.map(p => `  <url>
 });
 
 // ── Account Application API ───────────────────────────────────
-app.post('/api/account', async (req, res) => {
+app.post('/api/account', formGuard(), async (req, res) => {
   try {
     const d = req.body;
     if (!d.companyName || !d.contactName || !d.contactPhone || !d.contactEmail) {
@@ -357,6 +365,15 @@ If a customer describes a job, help them pick the right machine:
 
 app.post('/api/chat', async (req, res) => {
   try {
+    // Chat has no captcha (it would ruin the UX), so lean on origin + throttle
+    // to keep bots from burning Anthropic tokens.
+    if (!isAllowedOrigin(req)) {
+      return res.status(403).json({ error: 'Request blocked.' });
+    }
+    if (rateLimit(`chat:${clientIp(req)}`, { windowMs: 5 * 60 * 1000, max: 25 })) {
+      return res.status(429).json({ error: 'Too many messages. Please try again in a few minutes, or call us on 0800 250 081.' });
+    }
+
     const { messages } = req.body;
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: 'Invalid request.' });

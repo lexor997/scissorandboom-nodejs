@@ -303,6 +303,14 @@
             </div>
           </div>
 
+          <!-- anti-bot: honeypot (hidden from real users) -->
+          <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+            <label>Company Website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <% if (TURNSTILE_SITE_KEY) { %>
+          <div class="cf-turnstile mb-4" data-sitekey="<%= TURNSTILE_SITE_KEY %>" data-theme="auto"></div>
+          <% } %>
+
           <div class="d-flex flex-column flex-sm-row gap-3 align-items-sm-center">
             <button type="submit" class="btn-primary-custom px-5" id="submitBtn">
               <i class="bi bi-send me-2"></i>Submit Application
@@ -328,6 +336,9 @@
 
 <%- include('partials/_footer') %>
 
+<% if (TURNSTILE_SITE_KEY) { %>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<% } %>
 <script>
 document.getElementById('accountForm').addEventListener('submit', async function(e) {
   e.preventDefault();
@@ -372,6 +383,7 @@ document.getElementById('accountForm').addEventListener('submit', async function
     document.getElementById('errorMsg').classList.remove('d-none');
     btn.disabled = false;
     btn.innerHTML = '<i class="bi bi-send me-2"></i>Submit Application';
+    if (window.turnstile) { try { turnstile.reset(); } catch (e) {} }
   }
 });
 

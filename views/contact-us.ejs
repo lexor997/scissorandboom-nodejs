@@ -60,6 +60,15 @@
               <div class="col-12">
                 <textarea class="form-control" name="message" placeholder="Message — tell us about your project, site, and dates" rows="4" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:.65rem 1rem;width:100%;resize:vertical;"></textarea>
               </div>
+              <!-- anti-bot: honeypot (hidden from real users) -->
+              <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+                <label>Company Website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+              </div>
+              <% if (TURNSTILE_SITE_KEY) { %>
+              <div class="col-12">
+                <div class="cf-turnstile" data-sitekey="<%= TURNSTILE_SITE_KEY %>" data-theme="dark"></div>
+              </div>
+              <% } %>
               <div id="contactError" class="col-12 d-none">
                 <div class="alert alert-danger mb-0" style="font-size:.85rem;">Something went wrong. Please call <strong>0800 250 081</strong> or email <a href="mailto:hire@scissorandboom.co.nz">hire@scissorandboom.co.nz</a> directly.</div>
               </div>
@@ -72,6 +81,9 @@
             </div>
           </form>
 
+          <% if (TURNSTILE_SITE_KEY) { %>
+          <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+          <% } %>
           <script>
             document.getElementById('contactForm').addEventListener('submit', async function(e) {
               e.preventDefault();
@@ -104,6 +116,7 @@
                 btn.disabled = false;
                 btnText.classList.remove('d-none');
                 spinner.classList.add('d-none');
+                if (window.turnstile) { try { turnstile.reset(); } catch (e) {} }
               }
             });
           </script>

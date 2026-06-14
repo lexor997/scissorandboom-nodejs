@@ -166,6 +166,14 @@
             Something went wrong sending your request. Please call us on <strong>0800 250 081</strong> or email <a href="mailto:hire@scissorandboom.co.nz">hire@scissorandboom.co.nz</a> directly.
           </div>
 
+          <!-- anti-bot: honeypot (hidden from real users) -->
+          <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+            <label>Company Website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <% if (TURNSTILE_SITE_KEY) { %>
+          <div class="cf-turnstile mb-3" data-sitekey="<%= TURNSTILE_SITE_KEY %>" data-theme="auto"></div>
+          <% } %>
+
           <!-- Submit -->
           <button type="submit" id="bookingSubmit" class="btn-primary-custom w-100" style="font-size:1rem;padding:1rem;">
             <span id="bookingBtnText">Submit Booking Request</span>
@@ -177,6 +185,9 @@
           </div>
         </form>
 
+        <% if (TURNSTILE_SITE_KEY) { %>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+        <% } %>
         <script>
           document.getElementById('bookingForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -211,6 +222,7 @@
               btn.disabled = false;
               btnText.classList.remove('d-none');
               spinner.classList.add('d-none');
+              if (window.turnstile) { try { turnstile.reset(); } catch (e) {} }
             }
           });
         </script>
