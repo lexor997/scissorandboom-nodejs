@@ -100,6 +100,38 @@
     #sb-send:disabled { opacity: .45; cursor: default; }
     .sb-powered { text-align: center; font-size: .7rem; color: #bbb; margin-top: 6px; }
     .sb-powered a { color: #bbb; text-decoration: none; }
+
+    /* Pulsing ring to draw the eye to the button until first opened */
+    #sb-chat-btn.sb-pulse { animation: sb-attn 2s ease-in-out infinite; }
+    @keyframes sb-attn {
+      0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,.35), 0 0 0 0 rgba(230,204,23,.55); }
+      50%      { box-shadow: 0 4px 16px rgba(0,0,0,.35), 0 0 0 12px rgba(230,204,23,0); }
+    }
+
+    /* "Hi, I'm Boom" speech-bubble nudge above the button */
+    #sb-nudge {
+      position: fixed; bottom: 92px; right: 24px; z-index: 9997;
+      max-width: 230px; background: #fff; color: #1a1a1a;
+      border-radius: 14px; padding: 12px 32px 12px 14px;
+      border-left: 4px solid ${BRAND_YELLOW};
+      box-shadow: 0 6px 24px rgba(0,0,0,.22);
+      font-size: .85rem; line-height: 1.45; cursor: pointer;
+      opacity: 0; transform: translateY(8px) scale(.97);
+      transition: opacity .28s ease, transform .28s ease;
+      pointer-events: none;
+    }
+    #sb-nudge.sb-show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    #sb-nudge strong { color: ${BRAND_BLACK}; }
+    #sb-nudge::after {
+      content: ''; position: absolute; bottom: -6px; right: 26px;
+      width: 13px; height: 13px; background: #fff; transform: rotate(45deg);
+    }
+    #sb-nudge-close {
+      position: absolute; top: 5px; right: 7px;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.1rem; line-height: 1; color: #bbb; padding: 2px 4px;
+    }
+    #sb-nudge-close:hover { color: #555; }
   `;
   const style = document.createElement('style');
   style.textContent = css;
@@ -108,7 +140,7 @@
   /* ── Build HTML ───────────────────────────────────────── */
   const wrap = document.createElement('div');
   wrap.innerHTML = `
-    <button id="sb-chat-btn" aria-label="Chat with us">
+    <button id="sb-chat-btn" aria-label="Chat with Boom">
       <svg class="sb-icon-chat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z"/>
       </svg>
@@ -116,14 +148,18 @@
         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
       </svg>
     </button>
+    <div id="sb-nudge" role="button" tabindex="0" aria-label="Open chat with Boom">
+      <button id="sb-nudge-close" aria-label="Dismiss">&times;</button>
+      <span id="sb-nudge-text"></span>
+    </div>
     <div id="sb-chat-win" role="dialog" aria-label="Chat with Scissor and Boom">
       <div class="sb-header">
         <div class="sb-avatar">
           <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
         </div>
         <div class="sb-header-text">
-          <div class="sb-header-name">Scissor &amp; Boom Assistant</div>
-          <div class="sb-header-status">Ask about equipment, pricing, or bookings</div>
+          <div class="sb-header-name">Boom</div>
+          <div class="sb-header-status">Your height access mate · ask me anything</div>
         </div>
       </div>
       <div id="sb-messages"></div>
@@ -141,14 +177,36 @@
   document.body.appendChild(wrap);
 
   /* ── State ────────────────────────────────────────────── */
-  const btn      = document.getElementById('sb-chat-btn');
-  const win      = document.getElementById('sb-chat-win');
-  const msgs     = document.getElementById('sb-messages');
-  const input    = document.getElementById('sb-input');
-  const sendBtn  = document.getElementById('sb-send');
+  const btn        = document.getElementById('sb-chat-btn');
+  const win        = document.getElementById('sb-chat-win');
+  const msgs       = document.getElementById('sb-messages');
+  const input      = document.getElementById('sb-input');
+  const sendBtn    = document.getElementById('sb-send');
+  const nudge      = document.getElementById('sb-nudge');
+  const nudgeClose = document.getElementById('sb-nudge-close');
+  const nudgeText  = document.getElementById('sb-nudge-text');
   let history    = [];
+
+  // A few rotating openers so Boom feels fresh on repeat visits.
+  const NUDGE_LINES = [
+    "👋 Kia ora! I'm <strong>Boom</strong> — need a hand picking the right lift?",
+    "🦾 Not sure how much height you need? Ask <strong>Boom</strong>.",
+    "💬 Got a job on? <strong>Boom</strong> can find you the right machine.",
+    "💲 After a quick price or availability check? Just ask <strong>Boom</strong>.",
+    "🏗️ Indoor, outdoor, scissor or boom? <strong>Boom</strong> will point you the right way."
+  ];
+  nudgeText.innerHTML = NUDGE_LINES[Math.floor(Math.random() * NUDGE_LINES.length)];
   let isOpen     = false;
   let hasGreeted = false;
+
+  /* ── Nudge (the "Hi, I'm Boom" prompt) ────────────────── */
+  function nudgeDismissed() {
+    try { return sessionStorage.getItem('sb-nudge-dismissed') === '1'; } catch (e) { return false; }
+  }
+  function dismissNudge(remember) {
+    nudge.classList.remove('sb-show');
+    if (remember) { try { sessionStorage.setItem('sb-nudge-dismissed', '1'); } catch (e) {} }
+  }
 
   /* ── Toggle ───────────────────────────────────────────── */
   function toggleChat() {
@@ -156,13 +214,28 @@
     win.classList.toggle('sb-open', isOpen);
     btn.querySelector('.sb-icon-chat').style.display  = isOpen ? 'none'  : '';
     btn.querySelector('.sb-icon-close').style.display = isOpen ? ''      : 'none';
+    if (isOpen) {
+      btn.classList.remove('sb-pulse');
+      dismissNudge(true);
+    }
     if (isOpen && !hasGreeted) {
       hasGreeted = true;
-      addBotMsg("Kia ora! I'm the Scissor &amp; Boom assistant. Ask me about our equipment, working heights, delivery areas, pricing, or how to book — I'm here to help.");
+      addBotMsg("Kia ora! I'm <strong>Boom</strong> 🦾 your Scissor &amp; Boom mate. Ask me about gear, working heights, delivery, pricing or booking — I'll sort you out. What are you working on?");
     }
     if (isOpen) setTimeout(() => input.focus(), 220);
   }
   btn.addEventListener('click', toggleChat);
+
+  // Draw attention until the visitor opens the chat at least once.
+  btn.classList.add('sb-pulse');
+  if (!nudgeDismissed()) {
+    setTimeout(() => { if (!isOpen && !nudgeDismissed()) nudge.classList.add('sb-show'); }, 2800);
+  }
+  nudge.addEventListener('click', () => { dismissNudge(true); if (!isOpen) toggleChat(); });
+  nudge.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dismissNudge(true); if (!isOpen) toggleChat(); }
+  });
+  nudgeClose.addEventListener('click', e => { e.stopPropagation(); dismissNudge(true); });
 
   /* ── Messages ─────────────────────────────────────────── */
   function addBotMsg(html) {
